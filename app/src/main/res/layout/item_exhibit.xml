@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="kz.digitalart.app.domain.model.Exhibit" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <com.github.siyamed.shapeimageview.RoundedImageView
+            android:id="@+id/iv_poster"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:image_url="@{item.audio}"
+            app:siRadius="6dp"
+            app:siSquare="true"
+            tools:src="@drawable/ic_settings" />
+
+        <com.github.siyamed.shapeimageview.RoundedImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/gradient_item_home"
+            app:siRadius="6dp"
+            app:siSquare="true"
+            tools:src="@drawable/ic_settings" />
+
+
+        <TextView
+            android:id="@+id/tv_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_poster"
+            android:drawableStart="@drawable/ic_star_border_24dp"
+            android:text="@{item.rating.toString()}"
+            android:textColor="@color/white"
+            tools:text="4.5" />
+
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_poster"
+            android:layout_marginStart="8dp"
+            android:text="@{item.author}"
+            android:textColor="@color/color_363636"
+            android:textSize="16sp"
+            tools:text="Давид" />
+
+        <TextView
+            android:id="@+id/tv_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_author"
+            android:text="@{item.year}"
+            android:textColor="@color/color_363636"
+            tools:text="12-12-19" />
+
+    </RelativeLayout>
+</layout>
