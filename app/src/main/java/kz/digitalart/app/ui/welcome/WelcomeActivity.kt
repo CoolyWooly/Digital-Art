@@ -16,7 +16,6 @@ import javax.inject.Inject
 
 class WelcomeActivity : DaggerAppCompatActivity() {
     private val TAG = this::class.java.simpleName
-    private var isShow = true
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -30,21 +29,13 @@ class WelcomeActivity : DaggerAppCompatActivity() {
         binding.model = model
 
         drawer_layout.setOnClickListener {
-            v_languages_dialog.slideUp()
-            isShow = true
+            sp_lang.slideUp()
         }
 
         btn_start.setOnClickListener {
             val intent = Intent(this@WelcomeActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }
-
-        v_languages_dialog.init()
-        rv_languages.setOnClickListener {
-            if (isShow) v_languages_dialog.slideDown()
-            else v_languages_dialog.slideUp()
-            isShow = !isShow
         }
 
     }

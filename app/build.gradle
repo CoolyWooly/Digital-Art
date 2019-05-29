@@ -15,6 +15,7 @@ android {
         versionName "1.0.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -81,6 +82,9 @@ dependencies {
     implementation 'com.github.siyamed:android-shape-imageview:0.9.3@aar'
     //QR
     implementation 'me.dm7.barcodescanner:zbar:1.9.13'
+
+    //ConstraintLayout
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
 }
 
