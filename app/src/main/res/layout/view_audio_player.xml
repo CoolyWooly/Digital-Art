@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:background="@drawable/player_rounded"
+    android:padding="10dp"
+    android:gravity="center_vertical"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/btn_play"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/player_play" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp" >
+    </SeekBar>
+
+</LinearLayout>

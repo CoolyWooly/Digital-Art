@@ -1,7 +1,5 @@
-package kz.digitalart.app.ui.home.details
+package kz.digitalart.app.ui.liked.details
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,33 +10,31 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_home_details.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
 import kz.digitalart.app.databinding.FragmentHomeDetailsBinding
+import kz.digitalart.app.databinding.FragmentLikedDetailsBinding
 import kz.digitalart.app.domain.model.Exhibit
 import kz.digitalart.app.ui.MainActivity
 import javax.inject.Inject
 import android.util.Pair as UtilPair
 
 
-class HomeDetailsFragment : DaggerFragment() {
-    private val TAG: String = HomeDetailsFragment::class.java.simpleName
+class LikedDetailsFragment : DaggerFragment() {
+    private val TAG: String = LikedDetailsFragment::class.java.simpleName
     private val title by lazy(LazyThreadSafetyMode.NONE) { arguments?.getInt("title") ?: 0 }
-    private var exhibit: Exhibit? = null
 
     companion object {
-        val FRAGMENT_NAME: String = HomeDetailsFragment::class.java.name
+        val FRAGMENT_NAME: String = LikedDetailsFragment::class.java.name
     }
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: HomeDetailsViewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(HomeDetailsViewModel::class.java) }
+    private val viewModel: LikedDetailsViewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(LikedDetailsViewModel::class.java) }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = DataBindingUtil.inflate<FragmentHomeDetailsBinding>(
-                inflater, R.layout.fragment_home_details, container, false)
-        exhibit = arguments?.getSerializable("exhibit") as Exhibit
-        binding.item = exhibit
+        val binding = DataBindingUtil.inflate<FragmentLikedDetailsBinding>(
+                inflater, R.layout.fragment_liked_details, container, false)
+        binding.item = arguments?.getSerializable("exhibit") as Exhibit
         return binding.root
     }
 
@@ -46,22 +42,22 @@ class HomeDetailsFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).tv_toolbar.text = getString(title)
         with(viewModel) {
-            action.observe(this@HomeDetailsFragment, Observer {
+            action.observe(this@LikedDetailsFragment, Observer {
                 actionClicked(it)
             })
         }
-        audio_player.setURL(exhibit?.audio)
+
     }
 
     private fun actionClicked(action: String) {
         when (action) {
-            HomeDetailsViewModel.ACTION_LANGUAGE -> {
+            LikedDetailsViewModel.ACTION_LANGUAGE -> {
                 Toast.makeText(context, action, Toast.LENGTH_LONG).show()
             }
-            HomeDetailsViewModel.ACTION_LIKED -> {
+            LikedDetailsViewModel.ACTION_LIKED -> {
                 Toast.makeText(context, action, Toast.LENGTH_LONG).show()
             }
-            HomeDetailsViewModel.ACTION_ABOUT -> {
+            LikedDetailsViewModel.ACTION_ABOUT -> {
                 Toast.makeText(context, action, Toast.LENGTH_LONG).show()
             }
         }

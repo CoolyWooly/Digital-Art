@@ -5,6 +5,18 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/nav_item_main">
     <fragment
+        android:id="@+id/nav_item_qr"
+        android:name="kz.digitalart.app.ui.qr.QrFragment"
+        android:label="@string/nav_item_qr"
+        tools:layout="@layout/fragment_home">
+
+        <argument
+            android:name="title"
+            android:defaultValue="@string/nav_item_qr" />
+
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_item_main"
         android:name="kz.digitalart.app.ui.home.HomeFragment"
         android:label="@string/nav_item_main"
@@ -49,6 +61,9 @@
         <action
             android:id="@+id/action_nav_item_settings_to_nav_item_about"
             app:destination="@id/nav_item_about" />
+        <action
+            android:id="@+id/action_nav_item_settings_to_fragment_liked"
+            app:destination="@id/fragment_liked" />
     </fragment>
 
     <fragment
@@ -61,6 +76,40 @@
             android:name="title"
             android:defaultValue="@string/nav_item_about"
             app:argType="reference" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_liked"
+        android:name="kz.digitalart.app.ui.liked.LikedFragment"
+        android:label="@string/liked"
+        tools:layout="@layout/fragment_liked">
+
+        <argument
+            android:name="title"
+            android:defaultValue="@string/liked" />
+
+        <action
+            android:id="@+id/action_fragment_liked_to_fragment_liked_details"
+            app:destination="@id/fragment_liked_details" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_liked_details"
+        android:name="kz.digitalart.app.ui.liked.details.LikedDetailsFragment"
+        android:label="@string/overview"
+        tools:layout="@layout/fragment_liked_details">
+
+        <argument
+            android:name="title"
+            android:defaultValue="@string/overview" />
+
+        <argument
+            android:name="exhibit"
+            android:defaultValue="@null"
+            app:argType="kz.digitalart.app.domain.model.Exhibit"
+            app:nullable="true" />
 
     </fragment>
 

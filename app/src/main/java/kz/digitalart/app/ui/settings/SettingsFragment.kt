@@ -47,7 +47,9 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener {
                 Toast.makeText(context, "ll_language", Toast.LENGTH_LONG).show()
             }
             R.id.ll_liked -> {
-                Toast.makeText(context, "ll_liked", Toast.LENGTH_LONG).show()
+                val navController = Navigation.findNavController(view!!)
+                val action = SettingsFragmentDirections.actionNavItemSettingsToFragmentLiked()
+                navController.navigate(action)
             }
             R.id.ll_about -> {
                 val navController = Navigation.findNavController(view!!)

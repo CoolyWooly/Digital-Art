@@ -39,11 +39,11 @@ class LanguagesDialog : LinearLayout, View.OnClickListener {
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.rv_settings_change_order -> {
-                onItemClickListener?.onChangeCardClick()
+                onItemClickListener?.onItemClick()
                 slideUp()
             }
             R.id.rv_settings_add_card -> {
-                onItemClickListener?.onAddCardClick()
+                onItemClickListener?.onItemClick()
                 slideUp()
             }
         }
@@ -66,7 +66,6 @@ class LanguagesDialog : LinearLayout, View.OnClickListener {
     }
 
     interface OnItemClickListener {
-        fun onChangeCardClick()
-        fun onAddCardClick()
+        fun onItemClick()
     }
 }

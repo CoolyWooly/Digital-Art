@@ -8,11 +8,19 @@ import kz.digitalart.app.di.qualifier.ViewModelKey
 import kz.digitalart.app.ui.about.AboutViewModel
 import kz.digitalart.app.ui.home.HomeViewModel
 import kz.digitalart.app.ui.home.details.HomeDetailsViewModel
+import kz.digitalart.app.ui.liked.LikedViewModel
+import kz.digitalart.app.ui.liked.details.LikedDetailsViewModel
+import kz.digitalart.app.ui.qr.QrViewModel
 import kz.digitalart.app.ui.settings.SettingsViewModel
 import kz.digitalart.app.ui.welcome.WelcomeViewModel
 
 @Module
 abstract class AppViewModelBuilder {
+    @Binds
+    @IntoMap
+    @ViewModelKey(QrViewModel::class)
+    abstract fun bindQrViewModel(qrViewModel: QrViewModel): ViewModel
+
     @Binds
     @IntoMap
     @ViewModelKey(HomeViewModel::class)
@@ -37,4 +45,14 @@ abstract class AppViewModelBuilder {
     @IntoMap
     @ViewModelKey(WelcomeViewModel::class)
     abstract fun bindWelcomeViewModel(welcomeViewModel: WelcomeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LikedViewModel::class)
+    abstract fun bindLikedViewModel(likedViewModel: LikedViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LikedDetailsViewModel::class)
+    abstract fun bindLikedDetailsViewModel(likedDetailsViewModel: LikedDetailsViewModel): ViewModel
 }

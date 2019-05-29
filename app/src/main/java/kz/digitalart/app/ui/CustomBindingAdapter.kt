@@ -5,6 +5,7 @@ import com.daimajia.slider.library.SliderLayout
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView
 import com.github.siyamed.shapeimageview.RoundedImageView
 import com.squareup.picasso.Picasso
+import kz.digitalart.app.ui.custom_views.AudioPlayer
 
 
 @BindingAdapter("image_url")
@@ -29,4 +30,9 @@ fun loadImages(sliderLayout: SliderLayout, urls: ArrayList<String>) {
     val defaultSliderView2 = DefaultSliderView(sliderLayout.context)
     defaultSliderView2.image(ph2)
     sliderLayout.addSlider(defaultSliderView2)
+}
+
+@BindingAdapter("set_url")
+fun setUrl(audioPlayer: AudioPlayer, url: String) {
+    audioPlayer.setURL(url)
 }

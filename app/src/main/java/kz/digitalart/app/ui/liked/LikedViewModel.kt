@@ -1,4 +1,4 @@
-package kz.digitalart.app.ui.home
+package kz.digitalart.app.ui.liked
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,7 +7,7 @@ import kz.digitalart.app.domain.model.response.ErrorModel
 import kz.digitalart.app.domain.usecase.GetExhibitsUseCase
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(private val getExhibitsUseCase: GetExhibitsUseCase
+class LikedViewModel @Inject constructor(private val getExhibitsUseCase: GetExhibitsUseCase
 ) : ViewModel() {
     private val TAG = this::class.java.simpleName
     val exhibitsData: MutableLiveData<List<Exhibit>> by lazy { MutableLiveData<List<Exhibit>>() }
@@ -18,7 +18,7 @@ class HomeViewModel @Inject constructor(private val getExhibitsUseCase: GetExhib
         val photos = ArrayList<String>()
         val ph = "http://egov.kz/cms/sites/default/files/news/kak_propisat.jpg"
         photos.add(ph)
-        val exhibit1 = Exhibit("name", "desc", "year", "author", 5.0, photos, "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
+        val exhibit1 = Exhibit("name", "desc", "year", "author", 5.0, photos, "audio")
         val exhibit2 = Exhibit("name2", "desc2", "year2", "author2", 5.2, photos, "audio2")
         val exhibit3 = Exhibit("name3", "desc3", "year3", "author3", 5.3, photos, "audio3")
         val exhibit4 = Exhibit("name3", "desc3", "year3", "author3", 5.3, photos, ph)
