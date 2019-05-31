@@ -14,7 +14,7 @@ import kz.digitalart.app.ui.settings.SettingsFragment
 abstract class MainActivityProviders {
     @ContributesAndroidInjector
     abstract fun provideQrFragment(): QrFragment
-    
+
     @ContributesAndroidInjector
     abstract fun provideHomeFragment(): HomeFragment
 

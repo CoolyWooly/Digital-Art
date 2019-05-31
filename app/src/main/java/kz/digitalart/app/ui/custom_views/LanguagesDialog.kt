@@ -16,17 +16,19 @@ class LanguagesDialog : LinearLayout, View.OnClickListener {
 
     @JvmOverloads
     constructor(
-            context: Context,
-            attrs: AttributeSet? = null,
-            defStyleAttr: Int = 0)
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
+    )
             : super(context, attrs, defStyleAttr)
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     constructor(
-            context: Context,
-            attrs: AttributeSet?,
-            defStyleAttr: Int,
-            defStyleRes: Int)
+        context: Context,
+        attrs: AttributeSet?,
+        defStyleAttr: Int,
+        defStyleRes: Int
+    )
             : super(context, attrs, defStyleAttr, defStyleRes)
 
     init {

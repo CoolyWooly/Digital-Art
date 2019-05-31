@@ -39,8 +39,15 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: QrViewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(QrViewModel::class.java) }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private val viewModel: QrViewModel by lazy {
+        ViewModelProviders.of(this, viewModelFactory).get(QrViewModel::class.java)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         return inflater.inflate(R.layout.fragment_qr, container, false)
     }

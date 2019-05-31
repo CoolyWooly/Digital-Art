@@ -36,7 +36,11 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
         ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
     }
     val adapter: HomeAdapter by lazy { HomeAdapter(arrayListOf(), this) }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -64,7 +68,8 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
             adapter.add(it)
 
         } else {
-            Toast.makeText(context, context?.getString(R.string.empty_list), Toast.LENGTH_LONG).show()
+            Toast.makeText(context, context?.getString(R.string.empty_list), Toast.LENGTH_LONG)
+                .show()
         }
     }
 

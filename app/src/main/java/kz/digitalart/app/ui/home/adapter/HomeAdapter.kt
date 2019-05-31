@@ -10,8 +10,8 @@ import kz.digitalart.app.domain.model.Exhibit
 import kz.digitalart.app.ui.DataBindingViewHolder
 
 class HomeAdapter(
-        private var items: ArrayList<Exhibit> = arrayListOf(),
-        private var listener: OnExhibitClickListener
+    private var items: ArrayList<Exhibit> = arrayListOf(),
+    private var listener: OnExhibitClickListener
 ) : RecyclerView.Adapter<HomeAdapter.SimpleHolder>() {
     override fun getItemCount(): Int = items.size
 
@@ -24,8 +24,8 @@ class HomeAdapter(
         return SimpleHolder(binding)
     }
 
-    inner class SimpleHolder(dataBinding: ViewDataBinding)
-        : DataBindingViewHolder<Exhibit>(dataBinding) {
+    inner class SimpleHolder(dataBinding: ViewDataBinding) :
+        DataBindingViewHolder<Exhibit>(dataBinding) {
         override fun onBind(t: Exhibit): Unit = with(t) {
             dataBinding.setVariable(item, t)
             dataBinding.root.setOnClickListener {

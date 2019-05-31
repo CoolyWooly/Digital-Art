@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
-import kz.digitalart.app.databinding.FragmentHomeDetailsBinding
 import kz.digitalart.app.databinding.FragmentLikedDetailsBinding
 import kz.digitalart.app.domain.model.Exhibit
 import kz.digitalart.app.ui.MainActivity
@@ -30,10 +29,21 @@ class LikedDetailsFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: LikedDetailsViewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(LikedDetailsViewModel::class.java) }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private val viewModel: LikedDetailsViewModel by lazy {
+        ViewModelProviders.of(
+            this,
+            viewModelFactory
+        ).get(LikedDetailsViewModel::class.java)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val binding = DataBindingUtil.inflate<FragmentLikedDetailsBinding>(
-                inflater, R.layout.fragment_liked_details, container, false)
+            inflater, R.layout.fragment_liked_details, container, false
+        )
         binding.item = arguments?.getSerializable("exhibit") as Exhibit
         return binding.root
     }

@@ -15,9 +15,10 @@ class LanguagesSpinner : ConstraintLayout {
 
     @JvmOverloads
     constructor(
-            context: Context,
-            attrs: AttributeSet? = null,
-            defStyleAttr: Int = 0)
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
+    )
             : super(context, attrs, defStyleAttr)
 
     init {

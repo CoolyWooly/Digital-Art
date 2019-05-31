@@ -27,7 +27,8 @@ class CarouselSlider : LinearLayout {
     constructor(
         context: Context,
         attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0)
+        defStyleAttr: Int = 0
+    )
             : super(context, attrs, defStyleAttr)
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -35,7 +36,8 @@ class CarouselSlider : LinearLayout {
         context: Context,
         attrs: AttributeSet?,
         defStyleAttr: Int,
-        defStyleRes: Int)
+        defStyleRes: Int
+    )
             : super(context, attrs, defStyleAttr, defStyleRes)
 
     init {
@@ -43,7 +45,8 @@ class CarouselSlider : LinearLayout {
         inflater?.inflate(R.layout.view_carousel_slider, this)
 
         val layoutManager = CarouselLayoutManager(
-            CarouselLayoutManager.HORIZONTAL)
+            CarouselLayoutManager.HORIZONTAL
+        )
         // enable zoom effect. this line can be customized
         layoutManager.setPostLayoutListener(CarouselZoomPostLayoutListener())
         layoutManager.maxVisibleItems = 2

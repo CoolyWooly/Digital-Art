@@ -7,7 +7,8 @@ import kz.digitalart.app.domain.model.response.ErrorModel
 import kz.digitalart.app.domain.usecase.GetExhibitsUseCase
 import javax.inject.Inject
 
-class LikedViewModel @Inject constructor(private val getExhibitsUseCase: GetExhibitsUseCase
+class LikedViewModel @Inject constructor(
+    private val getExhibitsUseCase: GetExhibitsUseCase
 ) : ViewModel() {
     private val TAG = this::class.java.simpleName
     val exhibitsData: MutableLiveData<List<Exhibit>> by lazy { MutableLiveData<List<Exhibit>>() }

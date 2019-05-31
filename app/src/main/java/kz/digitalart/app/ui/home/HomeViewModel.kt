@@ -7,7 +7,8 @@ import kz.digitalart.app.domain.model.response.ErrorModel
 import kz.digitalart.app.domain.usecase.GetExhibitsUseCase
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(private val getExhibitsUseCase: GetExhibitsUseCase
+class HomeViewModel @Inject constructor(
+    private val getExhibitsUseCase: GetExhibitsUseCase
 ) : ViewModel() {
     private val TAG = this::class.java.simpleName
     val exhibitsData: MutableLiveData<List<Exhibit>> by lazy { MutableLiveData<List<Exhibit>>() }
@@ -16,14 +17,23 @@ class HomeViewModel @Inject constructor(private val getExhibitsUseCase: GetExhib
     init {
         val exhibits = arrayListOf<Exhibit>()
         val photos = ArrayList<String>()
-        val ph = "https://netstorage-nur.akamaized.net/images/04699b9aacc5c63a.jpg?impolicy=common-image&imwidth=700 q"
+        val ph =
+            "https://netstorage-nur.akamaized.net/images/04699b9aacc5c63a.jpg?impolicy=common-image&imwidth=700 q"
         photos.add(ph)
         photos.add(ph)
         photos.add(ph)
         photos.add(ph)
         photos.add(ph)
         photos.add(ph)
-        val exhibit1 = Exhibit("name", "desc", "year", "author", 5.0, photos, "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
+        val exhibit1 = Exhibit(
+            "name",
+            "desc",
+            "year",
+            "author",
+            5.0,
+            photos,
+            "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        )
         val exhibit2 = Exhibit("name2", "desc2", "year2", "author2", 5.2, photos, "audio2")
         val exhibit3 = Exhibit("name3", "desc3", "year3", "author3", 5.3, photos, "audio3")
         val exhibit4 = Exhibit("name3", "desc3", "year3", "author3", 5.3, photos, ph)

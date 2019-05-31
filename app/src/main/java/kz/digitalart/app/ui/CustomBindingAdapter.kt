@@ -10,17 +10,19 @@ import kz.digitalart.app.ui.custom_views.AudioPlayer
 
 @BindingAdapter("image_url")
 fun loadImage(imageView: RoundedImageView, url: String?) {
-    val ph1 = "https://netstorage-nur.akamaized.net/images/04699b9aacc5c63a.jpg?impolicy=common-image&imwidth=700"
+    val ph1 =
+        "https://netstorage-nur.akamaized.net/images/04699b9aacc5c63a.jpg?impolicy=common-image&imwidth=700"
 
     Picasso.with(imageView.context)
-            .load(url)
-            .into(imageView)
+        .load(url)
+        .into(imageView)
 }
 
 @BindingAdapter("image_urls")
 fun loadImages(sliderLayout: SliderLayout, urls: ArrayList<String>?) {
     val ph = "https://unosquare.github.io/swan/swan-logo-256.png"
-    val ph2 = "https://netstorage-nur.akamaized.net/images/04699b9aacc5c63a.jpg?impolicy=common-image&imwidth=700"
+    val ph2 =
+        "https://netstorage-nur.akamaized.net/images/04699b9aacc5c63a.jpg?impolicy=common-image&imwidth=700"
     sliderLayout.stopAutoCycle()
     sliderLayout.setPresetTransformer(SliderLayout.Transformer.Stack)
 

@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vector android:width="24dp"
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
     android:height="24dp"
     android:viewportWidth="24"
-    android:viewportHeight="24"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:viewportHeight="24">
 
-    <group android:name="group" android:pivotX="12" android:pivotY="12" android:rotation="-90">
+    <group
+        android:name="group"
+        android:pivotX="12"
+        android:pivotY="12"
+        android:rotation="-90">
         <path
             android:name="play1"
             android:fillColor="#E91E63"

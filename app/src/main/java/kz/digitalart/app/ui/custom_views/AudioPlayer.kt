@@ -13,10 +13,11 @@ import android.widget.SeekBar
 import kotlinx.android.synthetic.main.view_audio_player.view.*
 import kz.digitalart.app.R
 
-class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpdateListener, SeekBar.OnSeekBarChangeListener {
+class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletionListener,
+    MediaPlayer.OnBufferingUpdateListener, SeekBar.OnSeekBarChangeListener {
 
     private var lengthOfAudio: Int = 0
-    private var URL : String? = null
+    private var URL: String? = null
     private var mediaPlayer: MediaPlayer
 
     private val r = Runnable { updateSeekProgress() }
@@ -25,7 +26,8 @@ class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletion
     constructor(
         context: Context,
         attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0)
+        defStyleAttr: Int = 0
+    )
             : super(context, attrs, defStyleAttr)
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -33,7 +35,8 @@ class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletion
         context: Context,
         attrs: AttributeSet?,
         defStyleAttr: Int,
-        defStyleRes: Int)
+        defStyleRes: Int
+    )
             : super(context, attrs, defStyleAttr, defStyleRes)
 
     init {

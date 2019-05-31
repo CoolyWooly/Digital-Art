@@ -21,24 +21,24 @@ class NetworkModule {
     @Provides
     @Singleton
     fun providesRetrofit(
-            gsonConverterFactory: GsonConverterFactory,
-            okHttpClient: OkHttpClient
+        gsonConverterFactory: GsonConverterFactory,
+        okHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder().baseUrl(Config.HOST)
-                .addConverterFactory(gsonConverterFactory)
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .client(okHttpClient)
-                .build()
+            .addConverterFactory(gsonConverterFactory)
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .client(okHttpClient)
+            .build()
     }
 
     @Provides
     @Singleton
     fun providesOkHttpClient(): OkHttpClient {
         val client = OkHttpClient.Builder()
-                //  .cache(cache)
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .writeTimeout(60, TimeUnit.SECONDS)
-                .readTimeout(60, TimeUnit.SECONDS)
+            //  .cache(cache)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         client.addNetworkInterceptor(interceptor)

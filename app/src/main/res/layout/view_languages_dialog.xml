@@ -15,9 +15,9 @@
             android:id="@+id/rv_settings_change_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:padding="5dp">
 
             <TextView
@@ -42,9 +42,9 @@
             android:id="@+id/rv_settings_add_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:padding="5dp">
 
             <TextView

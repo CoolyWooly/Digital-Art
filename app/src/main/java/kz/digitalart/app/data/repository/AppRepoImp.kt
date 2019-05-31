@@ -6,7 +6,7 @@ import kz.digitalart.app.domain.repository.AppRepository
 import javax.inject.Inject
 
 class AppRepoImp @Inject constructor(
-        private val cloudRepository: BaseCloudRepository
+    private val cloudRepository: BaseCloudRepository
 ) : AppRepository {
 
     override suspend fun getExhibits(): List<Exhibit> {

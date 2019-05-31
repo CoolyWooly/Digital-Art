@@ -12,9 +12,9 @@ import kz.digitalart.app.di.component.DaggerCoreComponent
 class App : DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         return DaggerCoreComponent
-                .builder()
-                .application(this)
-                .build()
+            .builder()
+            .application(this)
+            .build()
     }
 
     override fun onCreate() {

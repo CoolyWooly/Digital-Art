@@ -19,13 +19,18 @@ class WelcomeActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: WelcomeViewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(WelcomeViewModel::class.java) }
+    private val viewModel: WelcomeViewModel by lazy {
+        ViewModelProviders.of(this, viewModelFactory).get(WelcomeViewModel::class.java)
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val model = WelcomeViewModel()
-        val binding = DataBindingUtil.setContentView<ViewDataBinding>(this, R.layout.activity_welcome) as ActivityWelcomeBinding
+        val binding = DataBindingUtil.setContentView<ViewDataBinding>(
+            this,
+            R.layout.activity_welcome
+        ) as ActivityWelcomeBinding
         binding.model = model
 
         drawer_layout.setOnClickListener {

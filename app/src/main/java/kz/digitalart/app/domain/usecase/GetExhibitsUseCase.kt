@@ -7,8 +7,8 @@ import kz.digitalart.app.domain.usecase.base.UseCase
 import javax.inject.Inject
 
 class GetExhibitsUseCase @Inject constructor(
-        errorUtil: CloudErrorMapper,
-        private val appRepository: AppRepository
+    errorUtil: CloudErrorMapper,
+    private val appRepository: AppRepository
 ) : UseCase<List<Exhibit>>(errorUtil) {
     override suspend fun executeOnBackground(): List<Exhibit> {
         return appRepository.getExhibits()

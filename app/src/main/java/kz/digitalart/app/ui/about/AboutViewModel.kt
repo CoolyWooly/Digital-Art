@@ -8,7 +8,7 @@ import kz.digitalart.app.domain.model.About
 import javax.inject.Inject
 
 class AboutViewModel @Inject constructor(
-        private val context: Context
+    private val context: Context
 ) : ViewModel() {
     private val TAG = this::class.java.simpleName
     val data: MutableLiveData<About> by lazy { MutableLiveData<About>() }

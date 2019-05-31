@@ -20,8 +20,8 @@
         <com.github.siyamed.shapeimageview.RoundedImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:src="@drawable/splashscreen"
             app:image_url="@{item}"
-            app:siRadius="16dp" />
+            app:siRadius="16dp"
+            tools:src="@drawable/splashscreen" />
     </FrameLayout>
 </layout>

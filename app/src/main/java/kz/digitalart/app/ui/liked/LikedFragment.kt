@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
 import kz.digitalart.app.domain.model.Exhibit
 import kz.digitalart.app.ui.MainActivity
-import kz.digitalart.app.ui.home.adapter.HomeAdapter
 import kz.digitalart.app.ui.liked.adapter.LikedAdapter
 import javax.inject.Inject
 import android.util.Pair as UtilPair
@@ -37,7 +36,11 @@ class LikedFragment : DaggerFragment(), LikedAdapter.OnExhibitClickListener {
         ViewModelProviders.of(this, viewModelFactory).get(LikedViewModel::class.java)
     }
     val adapter: LikedAdapter by lazy { LikedAdapter(arrayListOf(), this) }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_liked, container, false)
     }
 
@@ -65,7 +68,8 @@ class LikedFragment : DaggerFragment(), LikedAdapter.OnExhibitClickListener {
             adapter.add(it)
 
         } else {
-            Toast.makeText(context, context?.getString(R.string.empty_list), Toast.LENGTH_LONG).show()
+            Toast.makeText(context, context?.getString(R.string.empty_list), Toast.LENGTH_LONG)
+                .show()
         }
     }
 

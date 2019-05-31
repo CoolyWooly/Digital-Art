@@ -30,5 +30,5 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     override fun onSupportNavigateUp() =
-            Navigation.findNavController(this, R.id.container).navigateUp()
+        Navigation.findNavController(this, R.id.container).navigateUp()
 }

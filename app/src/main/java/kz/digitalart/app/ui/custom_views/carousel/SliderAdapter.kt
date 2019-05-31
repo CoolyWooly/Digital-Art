@@ -9,7 +9,7 @@ import kz.digitalart.app.databinding.ItemSliderBinding
 import kz.digitalart.app.ui.DataBindingViewHolder
 
 class SliderAdapter(
-        private var items: ArrayList<String> = arrayListOf()
+    private var items: ArrayList<String> = arrayListOf()
 ) : RecyclerView.Adapter<SliderAdapter.SimpleHolder>() {
     override fun getItemCount(): Int = items.size
 
@@ -22,8 +22,8 @@ class SliderAdapter(
         return SimpleHolder(binding)
     }
 
-    inner class SimpleHolder(dataBinding: ViewDataBinding)
-        : DataBindingViewHolder<String>(dataBinding) {
+    inner class SimpleHolder(dataBinding: ViewDataBinding) :
+        DataBindingViewHolder<String>(dataBinding) {
         override fun onBind(t: String): Unit = with(t) {
             dataBinding.setVariable(item, t)
         }

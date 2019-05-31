@@ -30,10 +30,21 @@ class HomeDetailsFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: HomeDetailsViewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(HomeDetailsViewModel::class.java) }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private val viewModel: HomeDetailsViewModel by lazy {
+        ViewModelProviders.of(
+            this,
+            viewModelFactory
+        ).get(HomeDetailsViewModel::class.java)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val binding = DataBindingUtil.inflate<FragmentHomeDetailsBinding>(
-                inflater, R.layout.fragment_home_details, container, false)
+            inflater, R.layout.fragment_home_details, container, false
+        )
         exhibit = arguments?.getSerializable("exhibit") as Exhibit
         binding.item = exhibit
         return binding.root
