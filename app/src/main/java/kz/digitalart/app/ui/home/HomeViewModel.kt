@@ -16,7 +16,12 @@ class HomeViewModel @Inject constructor(private val getExhibitsUseCase: GetExhib
     init {
         val exhibits = arrayListOf<Exhibit>()
         val photos = ArrayList<String>()
-        val ph = "http://egov.kz/cms/sites/default/files/news/kak_propisat.jpg"
+        val ph = "https://netstorage-nur.akamaized.net/images/04699b9aacc5c63a.jpg?impolicy=common-image&imwidth=700 q"
+        photos.add(ph)
+        photos.add(ph)
+        photos.add(ph)
+        photos.add(ph)
+        photos.add(ph)
         photos.add(ph)
         val exhibit1 = Exhibit("name", "desc", "year", "author", 5.0, photos, "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
         val exhibit2 = Exhibit("name2", "desc2", "year2", "author2", 5.2, photos, "audio2")

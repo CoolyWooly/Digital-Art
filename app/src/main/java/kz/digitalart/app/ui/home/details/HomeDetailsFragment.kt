@@ -1,7 +1,5 @@
 package kz.digitalart.app.ui.home.details
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +18,6 @@ import kz.digitalart.app.domain.model.Exhibit
 import kz.digitalart.app.ui.MainActivity
 import javax.inject.Inject
 import android.util.Pair as UtilPair
-
 
 class HomeDetailsFragment : DaggerFragment() {
     private val TAG: String = HomeDetailsFragment::class.java.simpleName
@@ -51,6 +48,9 @@ class HomeDetailsFragment : DaggerFragment() {
             })
         }
         audio_player.setURL(exhibit?.audio)
+        exhibit?.photos?.let {
+            carousel_slider.setItems(it)
+        }
     }
 
     private fun actionClicked(action: String) {

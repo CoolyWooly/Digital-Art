@@ -2,18 +2,16 @@ package kz.digitalart.app.ui.custom_views
 
 import android.annotation.TargetApi
 import android.content.Context
+import android.graphics.drawable.Animatable
 import android.media.MediaPlayer
 import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.SeekBar
 import kotlinx.android.synthetic.main.view_audio_player.view.*
 import kz.digitalart.app.R
-import android.graphics.drawable.Animatable
-import android.util.Log
 
 class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpdateListener, SeekBar.OnSeekBarChangeListener {
 
@@ -42,7 +40,6 @@ class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletion
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater?
         inflater?.inflate(R.layout.view_audio_player, this)
         btn_play.setOnClickListener(this)
-        //seekBar.setOnTouchListener(this)
         seekBar.setOnSeekBarChangeListener(this)
 
         mediaPlayer = MediaPlayer()
@@ -73,14 +70,6 @@ class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletion
 
         updateSeekProgress()
     }
-
-    /*override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-        if (mediaPlayer.isPlaying) {
-            val tmpSeekBar = v as SeekBar
-            mediaPlayer.seekTo(lengthOfAudio / 100 * tmpSeekBar.progress)
-        }
-        return false
-    }*/
 
     override fun onCompletion(mp: MediaPlayer?) {
         btn_play.isEnabled = true
@@ -142,5 +131,10 @@ class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletion
 
     fun setURL(string: String?) {
         URL = string
+    }
+
+    override fun onDetachedFromWindow() {
+        pauseAudio()
+        super.onDetachedFromWindow()
     }
 }

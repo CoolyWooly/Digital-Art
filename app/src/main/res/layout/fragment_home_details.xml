@@ -22,11 +22,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.daimajia.slider.library.SliderLayout
-                android:id="@+id/imageSlider"
+            <kz.digitalart.app.ui.custom_views.carousel.CarouselSlider
+                android:id="@+id/carousel_slider"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                app:image_urls="@{item.photos}" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/tv_name"
@@ -60,7 +59,7 @@
             <kz.digitalart.app.ui.custom_views.AudioPlayer
                 android:id="@+id/audio_player"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 app:set_url="@{item.audio}" />
 
             <TextView
