@@ -12,6 +12,7 @@ import android.widget.LinearLayout
 import android.widget.SeekBar
 import kotlinx.android.synthetic.main.view_audio_player.view.*
 import kz.digitalart.app.R
+import java.util.concurrent.TimeUnit
 
 class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletionListener,
     MediaPlayer.OnBufferingUpdateListener, SeekBar.OnSeekBarChangeListener {
@@ -100,6 +101,8 @@ class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletion
         if (mediaPlayer.isPlaying) {
             seekBar.progress =
                 (mediaPlayer.currentPosition.toFloat() / lengthOfAudio * 100).toInt()
+            time.text = convertMillis(lengthOfAudio)
+            progress_time.text = convertMillis(mediaPlayer.currentPosition)
             handler.postDelayed(r, 1000)
         }
     }
@@ -130,6 +133,23 @@ class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletion
         } else {
             btn_play.background = resources.getDrawable(R.drawable.player_pause)
         }
+    }
+
+    private fun convertMillis(millis: Int) : String {
+        return String.format(
+            "%02d:%02d",
+//            TimeUnit.MILLISECONDS.toHours(millis.toLong()),
+            TimeUnit.MILLISECONDS.toMinutes(millis.toLong()) - TimeUnit.HOURS.toMinutes(
+                TimeUnit.MILLISECONDS.toHours(
+                    millis.toLong()
+                )
+            ),
+            TimeUnit.MILLISECONDS.toSeconds(millis.toLong()) - TimeUnit.MINUTES.toSeconds(
+                TimeUnit.MILLISECONDS.toMinutes(
+                    millis.toLong()
+                )
+            )
+        )
     }
 
     fun setURL(string: String?) {

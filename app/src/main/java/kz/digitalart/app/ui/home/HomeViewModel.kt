@@ -18,7 +18,9 @@ class HomeViewModel @Inject constructor(
         val exhibits = arrayListOf<Exhibit>()
         val photos = ArrayList<String>()
         val ph =
-            "https://netstorage-nur.akamaized.net/images/04699b9aacc5c63a.jpg?impolicy=common-image&imwidth=700 q"
+            "https://netstorage-nur.akamaized.net/images/04699b9aacc5c63a.jpg?impolicy=common-image&imwidth=700"
+        val ph2 =
+            "http://krasivijmir.ru/wp-content/uploads/2014/11/zevs2.jpg"
         photos.add(ph)
         photos.add(ph)
         photos.add(ph)
@@ -26,10 +28,10 @@ class HomeViewModel @Inject constructor(
         photos.add(ph)
         photos.add(ph)
         val exhibit1 = Exhibit(
-            "name",
-            "desc",
-            "year",
-            "author",
+            "Статуя Зевса",
+            "Примерно в 470 году до н. э. правители Эллады решили построить новый величественный храм в честь отца богов — Зевса. По размаху и красоте он должен был превосходить все прежние знаменитые святилища Греции. Жители Греции приняли самое активное участие в сборе пожертвований на строительство храма, благодаря чему была собрана огромная сумма. 15 лет продолжалось строительство и, наконец, в 456 году до н. э. весь мир увидел одно из самых прекрасных монументальных сооружений — храм Зевса. Автором этого античного чуда был архитектор Лебон. Одним из основных элементов храма являлись 34 величественные колонны, высота которых достигала свыше 10 метров, а диаметр — не меньше двух метров. Из них 13 колонн поддерживали крышу, выложенную из мраморных плит.",
+            "470 год до н. э.",
+            "Фидий",
             5.0,
             photos,
             "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"

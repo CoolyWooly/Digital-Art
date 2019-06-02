@@ -1,5 +1,6 @@
 package kz.digitalart.app.ui
 
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.daimajia.slider.library.SliderLayout
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView
@@ -10,6 +11,16 @@ import kz.digitalart.app.ui.custom_views.AudioPlayer
 
 @BindingAdapter("image_url")
 fun loadImage(imageView: RoundedImageView, url: String?) {
+    val ph1 =
+        "https://netstorage-nur.akamaized.net/images/04699b9aacc5c63a.jpg?impolicy=common-image&imwidth=700"
+
+    Picasso.with(imageView.context)
+        .load(url)
+        .into(imageView)
+}
+
+@BindingAdapter("image_url")
+fun loadImage(imageView: ImageView, url: String?) {
     val ph1 =
         "https://netstorage-nur.akamaized.net/images/04699b9aacc5c63a.jpg?impolicy=common-image&imwidth=700"
 

@@ -10,5 +10,6 @@ data class Exhibit(
     @SerializedName("author") val author: String? = "",
     @SerializedName("rating") val rating: Double? = 0.0,
     @SerializedName("photos") val photos: ArrayList<String>? = ArrayList(),
-    @SerializedName("audio") val audio: String? = ""
+    @SerializedName("audio") val audio: String? = "",
+    @SerializedName("preview") val preview: String? = photos?.get(0)
 ) : Serializable
