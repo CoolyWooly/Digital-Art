@@ -73,7 +73,7 @@ abstract class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListen
         }
     }
 
-    abstract var scrollListener : EndlessRecyclerViewScrollListener
+    abstract var scrollListener: EndlessRecyclerViewScrollListener
 
     private fun initView() {
         val mLayoutManager = GridLayoutManager(context, 2)

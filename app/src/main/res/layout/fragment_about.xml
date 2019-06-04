@@ -2,6 +2,7 @@
 <layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="about"
             type="kz.digitalart.app.domain.model.About" />

@@ -134,7 +134,7 @@ class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletion
         }
     }
 
-    private fun convertMillis(millis: Int) : String {
+    private fun convertMillis(millis: Int): String {
         return String.format(
             "%02d:%02d",
 //            TimeUnit.MILLISECONDS.toHours(millis.toLong()),

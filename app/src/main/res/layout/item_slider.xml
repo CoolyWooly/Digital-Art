@@ -28,8 +28,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
-                app:image_url="@{item}"
                 android:scaleType="centerCrop"
+                app:image_url="@{item}"
                 tools:src="@drawable/splashscreen" />
 
         </androidx.cardview.widget.CardView>

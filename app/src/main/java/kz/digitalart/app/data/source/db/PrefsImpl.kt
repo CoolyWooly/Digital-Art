@@ -10,7 +10,8 @@ class PrefsImpl @Inject constructor(appContext: Context) : Prefs {
 
     private val fileName = "DigitalArtShrdPref"
 
-    private val prefs: SharedPreferences = appContext.getSharedPreferences(fileName, Context.MODE_PRIVATE)
+    private val prefs: SharedPreferences =
+        appContext.getSharedPreferences(fileName, Context.MODE_PRIVATE)
 
     override fun setLanguage(lang: String) {
         val editor = prefs.edit()

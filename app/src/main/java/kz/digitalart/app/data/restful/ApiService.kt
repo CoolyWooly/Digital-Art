@@ -15,17 +15,17 @@ interface ApiService {
 
     @GET("api/exhibits")
     fun getExhibitsAsync(
-        @Query("page") page : Int?,
-        @Query("limit") limit : Int?,
-        @Query("search") search : String?,
+        @Query("page") page: Int?,
+        @Query("limit") limit: Int?,
+        @Query("search") search: String?,
         @Query("lang") lang: String?
     ): Deferred<List<Exhibit>>
 
     @GET("api/exhibits/popular")
     fun getPopularAsync(
-        @Query("page") page : Int?,
-        @Query("limit") limit : Int?,
-        @Query("search") search : String?,
+        @Query("page") page: Int?,
+        @Query("limit") limit: Int?,
+        @Query("search") search: String?,
         @Query("lang") lang: String?
     ): Deferred<List<Exhibit>>
 

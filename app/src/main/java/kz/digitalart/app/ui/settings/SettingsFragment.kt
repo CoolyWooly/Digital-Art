@@ -54,7 +54,8 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener, LanguagesBottom
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.ll_language -> {
-                val bottomSheetFragment = LanguagesBottomSheetDialogFragment(viewModel.prefsImpl, activity, this)
+                val bottomSheetFragment =
+                    LanguagesBottomSheetDialogFragment(viewModel.prefsImpl, activity, this)
                 bottomSheetFragment.show(fragmentManager!!, bottomSheetFragment.tag)
             }
             R.id.ll_liked -> {

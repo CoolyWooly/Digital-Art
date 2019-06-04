@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="viewModel"
             type="kz.digitalart.app.ui.home.HomeViewModel" />
@@ -15,14 +17,14 @@
             android:id="@+id/et_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/search_rounded"
-            android:padding="5dp"
-            android:textSize="12sp"
-            android:text="@={viewModel.searchString}"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:hint="@string/find_exhibit" />
+            android:background="@drawable/search_rounded"
+            android:hint="@string/find_exhibit"
+            android:padding="5dp"
+            android:text="@={viewModel.searchString}"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_exhibits"

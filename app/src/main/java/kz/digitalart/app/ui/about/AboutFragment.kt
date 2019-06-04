@@ -29,7 +29,7 @@ class AboutFragment : DaggerFragment() {
     private val viewModel: AboutViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(AboutViewModel::class.java)
     }
-    var binding : FragmentAboutBinding? = null
+    var binding: FragmentAboutBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,

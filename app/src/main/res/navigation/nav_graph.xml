@@ -55,10 +55,10 @@
             app:destination="@id/fragment_liked" />
         <action
             android:id="@+id/action_refresh"
-            app:destination="@id/nav_item_settings"/>
+            app:destination="@id/nav_item_settings" />
         <action
             android:id="@+id/action_pop"
-            app:popUpTo="@id/nav_item_settings"/>
+            app:popUpTo="@id/nav_item_settings" />
     </fragment>
 
     <fragment

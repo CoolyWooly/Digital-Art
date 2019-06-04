@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
 
     <item
-        android:right="-200dp"
+        android:bottom="-700dp"
         android:left="200dp"
-        android:top="-200dp"
-        android:bottom="-700dp">
+        android:right="-200dp"
+        android:top="-200dp">
         <rotate android:fromDegrees="75">
             <shape android:shape="rectangle">
-                <padding android:top="-35dp"/>
+                <padding android:top="-35dp" />
                 <solid android:color="#ffffff" />
             </shape>
         </rotate>

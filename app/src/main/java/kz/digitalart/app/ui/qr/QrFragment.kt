@@ -80,7 +80,6 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
         viewModel.getExhibit(rawResult.contents.toInt())
 
 
-
         val handler = Handler()
         handler.postDelayed(
             { mScannerView?.resumeCameraPreview(this) },

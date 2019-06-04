@@ -22,7 +22,8 @@ class LikedViewModel @Inject constructor(
 
     fun getExhibits(page: Int?, limit: Int?, searchString: String?) {
         doWork {
-            val exhibits = baseCloudRepository.getPopular(page, limit, searchString, prefsImpl.getLanguage())
+            val exhibits =
+                baseCloudRepository.getPopular(page, limit, searchString, prefsImpl.getLanguage())
             exhibitsData.postValue(exhibits)
         }
     }

@@ -36,7 +36,7 @@ class LanguagesBottomSheetDialogFragment constructor(
 
     override fun onClick(v: View?) {
         deselectAll()
-        when(v?.id) {
+        when (v?.id) {
             R.id.ll_russian -> {
                 russianSelected()
             }
@@ -54,7 +54,7 @@ class LanguagesBottomSheetDialogFragment constructor(
     private fun setLang(lang: String?) {
         deselectAll()
 
-        when(lang) {
+        when (lang) {
             "ru" -> {
                 russianSelected()
             }

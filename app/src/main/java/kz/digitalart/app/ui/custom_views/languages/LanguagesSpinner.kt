@@ -10,7 +10,7 @@ import kz.digitalart.app.R
 
 class LanguagesSpinner : ConstraintLayout {
 
-    var onLangItemClickListener : OnLangItemClickListener? = null
+    var onLangItemClickListener: OnLangItemClickListener? = null
     private var droppedDown = false
     private val data = mutableListOf("RU", "KAZ", "ENG")
 
@@ -98,7 +98,7 @@ class LanguagesSpinner : ConstraintLayout {
         }
     }
 
-    private fun getLangCode(lang: String) : String {
+    private fun getLangCode(lang: String): String {
         return when (lang) {
             "RU" -> {
                 "ru"
