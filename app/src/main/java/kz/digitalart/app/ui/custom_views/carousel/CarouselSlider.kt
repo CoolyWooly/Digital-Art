@@ -17,7 +17,7 @@ import java.util.*
 
 class CarouselSlider : LinearLayout {
 
-    val adapter: SliderAdapter by lazy {
+    private val adapter: SliderAdapter by lazy {
         SliderAdapter(
             arrayListOf()
         )

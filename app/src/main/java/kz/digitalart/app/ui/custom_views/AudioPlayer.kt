@@ -84,8 +84,9 @@ class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletion
     }
 
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-        if (mediaPlayer.isPlaying && fromUser) {
+        if (fromUser) {
             mediaPlayer.seekTo(lengthOfAudio / 100 * seekBar!!.progress)
+            updateSeekProgress()
         }
     }
 
@@ -98,13 +99,11 @@ class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletion
     }
 
     private fun updateSeekProgress() {
-        if (mediaPlayer.isPlaying) {
-            seekBar.progress =
-                (mediaPlayer.currentPosition.toFloat() / lengthOfAudio * 100).toInt()
-            time.text = convertMillis(lengthOfAudio)
-            progress_time.text = convertMillis(mediaPlayer.currentPosition)
-            handler.postDelayed(r, 1000)
-        }
+        seekBar.progress =
+            (mediaPlayer.currentPosition.toFloat() / lengthOfAudio * 100).toInt()
+        time.text = convertMillis(lengthOfAudio)
+        progress_time.text = convertMillis(mediaPlayer.currentPosition)
+        handler?.postDelayed(r, 1000)
     }
 
     private fun pauseAudio() {

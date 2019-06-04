@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
@@ -13,6 +12,7 @@ import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
 import kz.digitalart.app.ui.MainActivity
+import kz.digitalart.app.ui.settings.languages.LanguagesBottomSheetDialogFragment
 import javax.inject.Inject
 import android.util.Pair as UtilPair
 
@@ -51,7 +51,8 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.ll_language -> {
-                Toast.makeText(context, "ll_language", Toast.LENGTH_LONG).show()
+                val bottomSheetFragment = LanguagesBottomSheetDialogFragment()
+                bottomSheetFragment.show(fragmentManager!!, bottomSheetFragment.tag)
             }
             R.id.ll_liked -> {
                 val navController = Navigation.findNavController(view!!)

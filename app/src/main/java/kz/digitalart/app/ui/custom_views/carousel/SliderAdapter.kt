@@ -33,9 +33,4 @@ class SliderAdapter(
         items.addAll(list)
         notifyDataSetChanged()
     }
-
-    fun clear() {
-        items.clear()
-        notifyDataSetChanged()
-    }
 }

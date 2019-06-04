@@ -62,4 +62,8 @@ M0,0 L0,24 1,24 1,0 M12,0 L12,24 13,24 13,0
     <string name="point_camera_at_exhibit">Наведите камеру на экспонат,
         \n
         чтобы отсканировать QR-код</string>
+    <string name="popular">Популярное</string>
+    <string name="russian">Русский</string>
+    <string name="kazakh">Қазақша</string>
+    <string name="english">English</string>
 </resources>

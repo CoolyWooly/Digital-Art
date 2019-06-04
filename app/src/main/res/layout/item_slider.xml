@@ -17,11 +17,21 @@
         android:layout_height="match_parent"
         android:layout_margin="30dp">
 
-        <com.github.siyamed.shapeimageview.RoundedImageView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:image_url="@{item}"
-            app:siRadius="16dp"
-            tools:src="@drawable/splashscreen" />
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/iv_poster"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                app:image_url="@{item}"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/splashscreen" />
+
+        </androidx.cardview.widget.CardView>
     </FrameLayout>
 </layout>

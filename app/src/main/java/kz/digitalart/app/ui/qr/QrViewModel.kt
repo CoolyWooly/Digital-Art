@@ -1,14 +1,21 @@
 package kz.digitalart.app.ui.qr
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import kz.digitalart.app.core.BaseViewModel
+import kz.digitalart.app.data.source.cloud.BaseCloudRepository
+import kz.digitalart.app.domain.model.Exhibit
 import javax.inject.Inject
 
-class QrViewModel @Inject constructor() : ViewModel() {
+class QrViewModel @Inject constructor(
+    private val baseCloudRepository: BaseCloudRepository
+) : BaseViewModel() {
     private val TAG = this::class.java.simpleName
+    val exhibitsData: MutableLiveData<Exhibit> by lazy { MutableLiveData<Exhibit>() }
 
-    companion object {
-        val ACTION_LANGUAGE = "ACTION_LANGUAGE"
-        val ACTION_LIKED = "ACTION_LIKED"
-        val ACTION_ABOUT = "ACTION_ABOUT"
+    fun getExhibit(id: Int?) {
+        doWork {
+            val exhibits = baseCloudRepository.getExhibit(id, "kk")
+            exhibitsData.postValue(exhibits)
+        }
     }
 }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -14,6 +15,7 @@ import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
+import kz.digitalart.app.databinding.FragmentHomeBinding
 import kz.digitalart.app.domain.model.Exhibit
 import kz.digitalart.app.ui.MainActivity
 import kz.digitalart.app.ui.home.adapter.HomeAdapter
@@ -41,13 +43,21 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val binding = DataBindingUtil.inflate<FragmentHomeBinding>(
+            inflater, R.layout.fragment_home, container, false
+        )
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).tv_toolbar.text = getString(title)
         with(viewModel) {
+            searchString.observe(this@HomeFragment, Observer {
+                if (it.isNullOrEmpty() || it.length > 2) {
+                    getExhibits(it)
+                }
+            })
             exhibitsData.observe(this@HomeFragment, Observer {
                 initView(it)
             })

@@ -1,5 +1,5 @@
 package kz.digitalart.app.core
 
 object Config {
-    var HOST = "http://www.recipepuppy.com/"
+    var HOST = "http://dcs.panama.kz:8000/"
 }

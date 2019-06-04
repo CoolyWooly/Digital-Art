@@ -35,7 +35,8 @@ class LikedFragment : DaggerFragment(), LikedAdapter.OnExhibitClickListener {
     private val viewModel: LikedViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(LikedViewModel::class.java)
     }
-    val adapter: LikedAdapter by lazy { LikedAdapter(arrayListOf(), this) }
+    private val adapter: LikedAdapter by lazy { LikedAdapter(arrayListOf(), this) }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -74,7 +75,6 @@ class LikedFragment : DaggerFragment(), LikedAdapter.OnExhibitClickListener {
     }
 
     override fun onExhibitClick(exhibit: Exhibit) {
-
         val action = LikedFragmentDirections.actionFragmentLikedToFragmentLikedDetails()
         action.exhibit = exhibit
         val navController = Navigation.findNavController(view!!)

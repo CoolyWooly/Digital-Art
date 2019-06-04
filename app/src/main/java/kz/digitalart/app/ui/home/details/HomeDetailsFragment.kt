@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerFragment
@@ -53,28 +51,9 @@ class HomeDetailsFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).tv_toolbar.text = getString(title)
-        with(viewModel) {
-            action.observe(this@HomeDetailsFragment, Observer {
-                actionClicked(it)
-            })
-        }
         audio_player.setURL(exhibit?.audio)
         exhibit?.photos?.let {
             carousel_slider.setItems(it)
-        }
-    }
-
-    private fun actionClicked(action: String) {
-        when (action) {
-            HomeDetailsViewModel.ACTION_LANGUAGE -> {
-                Toast.makeText(context, action, Toast.LENGTH_LONG).show()
-            }
-            HomeDetailsViewModel.ACTION_LIKED -> {
-                Toast.makeText(context, action, Toast.LENGTH_LONG).show()
-            }
-            HomeDetailsViewModel.ACTION_ABOUT -> {
-                Toast.makeText(context, action, Toast.LENGTH_LONG).show()
-            }
         }
     }
 }

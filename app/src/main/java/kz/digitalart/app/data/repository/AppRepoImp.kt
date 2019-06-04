@@ -10,6 +10,6 @@ class AppRepoImp @Inject constructor(
 ) : AppRepository {
 
     override suspend fun getExhibits(): List<Exhibit> {
-        return cloudRepository.getExhibits()
+        return arrayListOf()
     }
 }

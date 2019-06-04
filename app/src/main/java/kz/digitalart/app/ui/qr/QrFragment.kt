@@ -12,8 +12,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_qr.*
 import kotlinx.android.synthetic.main.toolbar_main.*
@@ -62,13 +64,23 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
             }
         }
         content_frame.addView(mScannerView)
+
+        with(viewModel) {
+            exhibitsData.observe(this@QrFragment, Observer {
+                val action = QrFragmentDirections.actionFragmentQrToFragmentLikedDetails()
+                action.exhibit = it
+                val navController = Navigation.findNavController(view)
+                navController.navigate(action)
+            })
+        }
     }
 
     override fun handleResult(rawResult: Result) {
-        Toast.makeText(
-            context, "Contents = " +
-                    ", Format = " + rawResult.barcodeFormat.toString(), Toast.LENGTH_SHORT
-        ).show()
+        Toast.makeText(context, rawResult.contents, Toast.LENGTH_SHORT).show()
+
+        viewModel.getExhibit(rawResult.contents.toInt())
+
+
 
         val handler = Handler()
         handler.postDelayed(
@@ -130,8 +142,8 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
         }
 
         companion object {
-            val TRADE_MARK_TEXT = ""
-            val TRADE_MARK_TEXT_SIZE_SP = 40
+            const val TRADE_MARK_TEXT = ""
+            const val TRADE_MARK_TEXT_SIZE_SP = 40
         }
     }
 }

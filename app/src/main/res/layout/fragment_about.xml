@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg"
-    android:padding="16dp">
+<layout xmlns:tools="http://schemas.android.com/tools">
 
-    <View
+    <data>
+        <variable
+            name="about"
+            type="kz.digitalart.app.domain.model.About" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/color_C0C0C0" />
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:padding="16dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/about_description"
-        android:textColor="@color/color_363636"
-        android:textSize="16sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/color_C0C0C0" />
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@{about.info}"
+            android:textColor="@color/color_363636"
+            android:textSize="16sp"
+            tools:text="@string/about_description" />
+
+    </RelativeLayout>
+</layout>
+
