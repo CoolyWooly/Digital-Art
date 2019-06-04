@@ -1,4 +1,4 @@
-package kz.digitalart.app.ui.custom_views
+package kz.digitalart.app.ui.custom_views.languages
 
 import android.content.Context
 import android.util.AttributeSet
@@ -10,6 +10,7 @@ import kz.digitalart.app.R
 
 class LanguagesSpinner : ConstraintLayout {
 
+    var onLangItemClickListener : OnLangItemClickListener? = null
     private var droppedDown = false
     private val data = mutableListOf("RU", "KAZ", "ENG")
 
@@ -40,6 +41,7 @@ class LanguagesSpinner : ConstraintLayout {
             data[0] = selected
             data[1] = first
             setTexts()
+            onLangItemClickListener?.langItemClick(getLangCode(data[0]))
         }
         rv_second_choice.setOnClickListener {
             slideUp()
@@ -49,11 +51,12 @@ class LanguagesSpinner : ConstraintLayout {
             data[0] = selected
             data[2] = first
             setTexts()
+            onLangItemClickListener?.langItemClick(getLangCode(data[0]))
         }
         init()
     }
 
-    fun setTexts() {
+    private fun setTexts() {
         tv_selected_lang.text = data[0]
         tv_first_choice.text = data[1]
         tv_second_choice.text = data[2]
@@ -69,5 +72,46 @@ class LanguagesSpinner : ConstraintLayout {
 
     fun slideDown() {
         ll_dropdown.animate().translationY(0f).setDuration(300).start()
+    }
+
+    fun setLanguage(langCode: String) {
+        when (langCode) {
+            "ru" -> {
+
+            }
+            "kk" -> {
+                droppedDown = false
+                val first = data[0]
+                val selected = data[1]
+                data[0] = selected
+                data[1] = first
+                setTexts()
+            }
+            "en" -> {
+                droppedDown = false
+                val first = data[0]
+                val selected = data[2]
+                data[0] = selected
+                data[2] = first
+                setTexts()
+            }
+        }
+    }
+
+    private fun getLangCode(lang: String) : String {
+        return when (lang) {
+            "RU" -> {
+                "ru"
+            }
+            "KAZ" -> {
+                "kk"
+            }
+            "ENG" -> {
+                "en"
+            }
+            else -> {
+                ""
+            }
+        }
     }
 }

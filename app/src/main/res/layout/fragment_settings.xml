@@ -19,6 +19,7 @@
         android:padding="26dp">
 
         <TextView
+            android:id="@+id/tv_language"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -51,6 +52,7 @@
         android:padding="26dp">
 
         <TextView
+            android:id="@+id/tv_liked"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -84,6 +86,7 @@
         android:padding="26dp">
 
         <TextView
+            android:id="@+id/tv_about"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

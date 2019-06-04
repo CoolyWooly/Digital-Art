@@ -46,7 +46,7 @@
             app:layout_constraintBottom_toTopOf="@id/btn_start"
             app:layout_constraintStart_toStartOf="@id/btn_start" />
 
-        <kz.digitalart.app.ui.custom_views.LanguagesSpinner
+        <kz.digitalart.app.ui.custom_views.languages.LanguagesSpinner
             android:id="@+id/sp_lang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

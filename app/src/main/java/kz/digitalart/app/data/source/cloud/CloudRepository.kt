@@ -17,7 +17,11 @@ class CloudRepository(private val apIs: ApiService) : BaseCloudRepository {
         return apIs.getPopularAsync(page, limit, search, lang).await()
     }
 
-    override suspend fun getAbout(): About {
-        return apIs.getAboutAsync().await()
+    override suspend fun getAbout(lang: String?): About {
+        return apIs.getAboutAsync(lang).await()
+    }
+
+    override suspend fun setExhibitRate(id: Int?, rate: Double?): About {
+        return apIs.setExhibitRateAsync(id, rate).await()
     }
 }

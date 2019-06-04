@@ -3,10 +3,12 @@ package kz.digitalart.app.ui.about
 import androidx.lifecycle.MutableLiveData
 import kz.digitalart.app.core.BaseViewModel
 import kz.digitalart.app.data.source.cloud.BaseCloudRepository
+import kz.digitalart.app.data.source.db.PrefsImpl
 import kz.digitalart.app.domain.model.About
 import javax.inject.Inject
 
 class AboutViewModel @Inject constructor(
+    private val prefsImpl: PrefsImpl,
     private val baseCloudRepository: BaseCloudRepository
 ) : BaseViewModel() {
     private val TAG = this::class.java.simpleName
@@ -18,7 +20,7 @@ class AboutViewModel @Inject constructor(
 
     private fun getAbout() {
         doWork {
-            val exhibits = baseCloudRepository.getAbout()
+            val exhibits = baseCloudRepository.getAbout(prefsImpl.getLanguage())
             data.postValue(exhibits)
         }
     }

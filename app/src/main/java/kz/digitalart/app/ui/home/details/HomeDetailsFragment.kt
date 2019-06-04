@@ -19,7 +19,6 @@ import android.util.Pair as UtilPair
 
 class HomeDetailsFragment : DaggerFragment() {
     private val TAG: String = HomeDetailsFragment::class.java.simpleName
-    private val title by lazy(LazyThreadSafetyMode.NONE) { arguments?.getInt("title") ?: 0 }
     private var exhibit: Exhibit? = null
 
     companion object {
@@ -50,7 +49,7 @@ class HomeDetailsFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).tv_toolbar.text = getString(title)
+        (activity as MainActivity).tv_toolbar.text = getString(R.string.overview)
         audio_player.setURL(exhibit?.audio)
         exhibit?.photos?.let {
             carousel_slider.setItems(it)

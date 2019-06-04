@@ -32,7 +32,6 @@ import android.util.Pair as UtilPair
 class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
 
     private val TAG: String = QrFragment::class.java.simpleName
-    private val title by lazy(LazyThreadSafetyMode.NONE) { arguments?.getInt("title") ?: 0 }
     private var mScannerView: ZBarScannerView? = null
 
     companion object {
@@ -56,7 +55,7 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).tv_toolbar.text = getString(title)
+        (activity as MainActivity).tv_toolbar.text = getString(R.string.nav_item_qr)
 
         mScannerView = object : ZBarScannerView(context) {
             override fun createViewFinderView(context: Context): IViewFinder {

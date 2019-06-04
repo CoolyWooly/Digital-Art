@@ -19,7 +19,6 @@ import android.util.Pair as UtilPair
 
 class AboutFragment : DaggerFragment() {
     private val TAG: String = AboutFragment::class.java.simpleName
-    private val title by lazy(LazyThreadSafetyMode.NONE) { arguments?.getInt("title") ?: 0 }
 
     companion object {
         val FRAGMENT_NAME: String = AboutFragment::class.java.name
@@ -45,7 +44,7 @@ class AboutFragment : DaggerFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        (activity as MainActivity).tv_toolbar.text = getString(title)
+        (activity as MainActivity).tv_toolbar.text = getString(R.string.nav_item_about)
         with(viewModel) {
             data.observe(this@AboutFragment, Observer {
                 binding?.about = it

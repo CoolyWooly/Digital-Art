@@ -10,5 +10,7 @@ interface BaseCloudRepository {
 
     suspend fun getPopular(page: Int?, limit: Int?, search: String?, lang: String?): List<Exhibit>
 
-    suspend fun getAbout(): About
+    suspend fun getAbout(lang: String?): About
+
+    suspend fun setExhibitRate(id: Int?, rate: Double?): About
 }

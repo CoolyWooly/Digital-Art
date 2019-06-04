@@ -8,6 +8,7 @@ import kz.digitalart.app.ui.home.details.HomeDetailsFragment
 import kz.digitalart.app.ui.liked.LikedFragment
 import kz.digitalart.app.ui.qr.QrFragment
 import kz.digitalart.app.ui.settings.SettingsFragment
+import kz.digitalart.app.ui.settings.languages.LanguagesBottomSheetDialogFragment
 
 @Module
 abstract class MainActivityProviders {
@@ -28,5 +29,8 @@ abstract class MainActivityProviders {
 
     @ContributesAndroidInjector
     abstract fun provideLikedFragment(): LikedFragment
+
+    @ContributesAndroidInjector
+    abstract fun provideLanguagesBottomSheetDialogFragment(): LanguagesBottomSheetDialogFragment
 
 }

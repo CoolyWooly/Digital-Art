@@ -19,14 +19,14 @@ import kz.digitalart.app.databinding.FragmentHomeBinding
 import kz.digitalart.app.domain.model.Exhibit
 import kz.digitalart.app.ui.MainActivity
 import kz.digitalart.app.ui.home.adapter.HomeAdapter
+import kz.digitalart.app.utils.EndlessRecyclerViewScrollListener
 import javax.inject.Inject
 import android.util.Pair as UtilPair
 
 
-class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
+abstract class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
 
     private val TAG: String = HomeFragment::class.java.simpleName
-    private val title by lazy(LazyThreadSafetyMode.NONE) { arguments?.getInt("title") ?: 0 }
 
     companion object {
         val FRAGMENT_NAME: String = HomeFragment::class.java.name
@@ -37,7 +37,7 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
     private val viewModel: HomeViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
     }
-    val adapter: HomeAdapter by lazy { HomeAdapter(arrayListOf(), this) }
+    private val adapter: HomeAdapter by lazy { HomeAdapter(arrayListOf(), this) }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,20 +46,25 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
         val binding = DataBindingUtil.inflate<FragmentHomeBinding>(
             inflater, R.layout.fragment_home, container, false
         )
+        binding.viewModel = viewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).tv_toolbar.text = getString(title)
+        (activity as MainActivity).tv_toolbar.text = getString(R.string.nav_item_main)
+        initView()
         with(viewModel) {
             searchString.observe(this@HomeFragment, Observer {
                 if (it.isNullOrEmpty() || it.length > 2) {
-                    getExhibits(it)
+                    getExhibits(0, 20, it)
+                    scrollListener.resetValues()
                 }
             })
             exhibitsData.observe(this@HomeFragment, Observer {
-                initView(it)
+                if (it!!.isNotEmpty()) {
+                    adapter.add(it)
+                }
             })
             error.observe(this@HomeFragment, Observer {
                 progressBar_home.visibility = View.GONE
@@ -68,19 +73,19 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
         }
     }
 
-    private fun initView(it: List<Exhibit>?) {
+    abstract var scrollListener : EndlessRecyclerViewScrollListener
+
+    private fun initView() {
         val mLayoutManager = GridLayoutManager(context, 2)
         rv_main_home.layoutManager = mLayoutManager
         rv_main_home.adapter = adapter
-        progressBar_home.visibility = View.GONE
-        if (it!!.isNotEmpty()) {
-            adapter.clear()
-            adapter.add(it)
-
-        } else {
-            Toast.makeText(context, context?.getString(R.string.empty_list), Toast.LENGTH_LONG)
-                .show()
+        scrollListener = object : EndlessRecyclerViewScrollListener(mLayoutManager) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int) {
+                viewModel.getExhibits(page, 20, viewModel.searchString.value)
+            }
         }
+        rv_main_home.addOnScrollListener(scrollListener)
+        progressBar_home.visibility = View.GONE
     }
 
     override fun onExhibitClick(exhibit: Exhibit) {

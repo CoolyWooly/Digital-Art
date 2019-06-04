@@ -10,10 +10,6 @@
         android:label="@string/nav_item_qr"
         tools:layout="@layout/fragment_qr">
 
-        <argument
-            android:name="title"
-            android:defaultValue="@string/nav_item_qr" />
-
         <action
             android:id="@+id/action_fragment_qr_to_fragment_liked_details"
             app:destination="@id/fragment_home_details" />
@@ -25,10 +21,6 @@
         android:name="kz.digitalart.app.ui.home.HomeFragment"
         android:label="@string/nav_item_main"
         tools:layout="@layout/fragment_home">
-
-        <argument
-            android:name="title"
-            android:defaultValue="@string/nav_item_main" />
 
         <action
             android:id="@+id/action_nav_item_main_to_fragment_home_details"
@@ -43,10 +35,6 @@
         tools:layout="@layout/fragment_home_details">
 
         <argument
-            android:name="title"
-            android:defaultValue="@string/overview" />
-
-        <argument
             android:name="exhibit"
             android:defaultValue="@null"
             app:argType="kz.digitalart.app.domain.model.Exhibit"
@@ -59,15 +47,18 @@
         android:name="kz.digitalart.app.ui.settings.SettingsFragment"
         android:label="@string/nav_item_settings"
         tools:layout="@layout/fragment_settings">
-        <argument
-            android:name="title"
-            android:defaultValue="@string/nav_item_settings" />
         <action
             android:id="@+id/action_nav_item_settings_to_nav_item_about"
             app:destination="@id/nav_item_about" />
         <action
             android:id="@+id/action_nav_item_settings_to_fragment_liked"
             app:destination="@id/fragment_liked" />
+        <action
+            android:id="@+id/action_refresh"
+            app:destination="@id/nav_item_settings"/>
+        <action
+            android:id="@+id/action_pop"
+            app:popUpTo="@id/nav_item_settings"/>
     </fragment>
 
     <fragment
@@ -76,11 +67,6 @@
         android:label="@string/nav_item_about"
         tools:layout="@layout/fragment_about">
 
-        <argument
-            android:name="title"
-            android:defaultValue="@string/nav_item_about"
-            app:argType="reference" />
-
     </fragment>
 
     <fragment
@@ -88,10 +74,6 @@
         android:name="kz.digitalart.app.ui.liked.LikedFragment"
         android:label="@string/popular"
         tools:layout="@layout/fragment_liked">
-
-        <argument
-            android:name="title"
-            android:defaultValue="@string/popular" />
 
         <action
             android:id="@+id/action_fragment_liked_to_fragment_liked_details"

@@ -17,6 +17,7 @@ import kz.digitalart.app.R
 import kz.digitalart.app.domain.model.Exhibit
 import kz.digitalart.app.ui.MainActivity
 import kz.digitalart.app.ui.liked.adapter.LikedAdapter
+import kz.digitalart.app.utils.EndlessRecyclerViewScrollListener
 import javax.inject.Inject
 import android.util.Pair as UtilPair
 
@@ -24,7 +25,6 @@ import android.util.Pair as UtilPair
 class LikedFragment : DaggerFragment(), LikedAdapter.OnExhibitClickListener {
 
     private val TAG: String = LikedFragment::class.java.simpleName
-    private val title by lazy(LazyThreadSafetyMode.NONE) { arguments?.getInt("title") ?: 0 }
 
     companion object {
         val FRAGMENT_NAME: String = LikedFragment::class.java.name
@@ -47,10 +47,13 @@ class LikedFragment : DaggerFragment(), LikedAdapter.OnExhibitClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).tv_toolbar.text = getString(title)
+        (activity as MainActivity).tv_toolbar.text = getString(R.string.popular)
+        initView()
         with(viewModel) {
             exhibitsData.observe(this@LikedFragment, Observer {
-                initView(it)
+                if (it!!.isNotEmpty()) {
+                    adapter.add(it)
+                }
             })
             error.observe(this@LikedFragment, Observer {
                 progressBar_home.visibility = View.GONE
@@ -59,19 +62,17 @@ class LikedFragment : DaggerFragment(), LikedAdapter.OnExhibitClickListener {
         }
     }
 
-    private fun initView(it: List<Exhibit>?) {
+    private fun initView() {
         val mLayoutManager = GridLayoutManager(context, 2)
         rv_main_home.layoutManager = mLayoutManager
         rv_main_home.adapter = adapter
+        rv_main_home.addOnScrollListener(object :
+            EndlessRecyclerViewScrollListener(mLayoutManager) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int) {
+                viewModel.getExhibits(page, 20, null)
+            }
+        })
         progressBar_home.visibility = View.GONE
-        if (it!!.isNotEmpty()) {
-            adapter.clear()
-            adapter.add(it)
-
-        } else {
-            Toast.makeText(context, context?.getString(R.string.empty_list), Toast.LENGTH_LONG)
-                .show()
-        }
     }
 
     override fun onExhibitClick(exhibit: Exhibit) {
