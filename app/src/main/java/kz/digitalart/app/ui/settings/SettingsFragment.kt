@@ -39,11 +39,11 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener, LanguagesBottom
         savedInstanceState: Bundle?
     ): View? {
         val asdf = getString(R.string.nav_item_settings)
+        val current = resources.configuration.locale
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val asdf = getString(R.string.nav_item_settings)
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).tv_toolbar.text = getString(R.string.nav_item_settings)
         ll_language.setOnClickListener(this)
@@ -72,8 +72,6 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener, LanguagesBottom
     }
 
     override fun languageClicked() {
-        val navController = Navigation.findNavController(view!!)
-        val action = SettingsFragmentDirections.actionRefresh()
-        navController.navigate(action)
+        activity?.recreate()
     }
 }

@@ -24,7 +24,7 @@ import javax.inject.Inject
 import android.util.Pair as UtilPair
 
 
-abstract class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
+class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
 
     private val TAG: String = HomeFragment::class.java.simpleName
 
@@ -58,7 +58,7 @@ abstract class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListen
             searchString.observe(this@HomeFragment, Observer {
                 if (it.isNullOrEmpty() || it.length > 2) {
                     getExhibits(0, 20, it)
-                    scrollListener.resetValues()
+                    scrollListener?.resetValues()
                 }
             })
             exhibitsData.observe(this@HomeFragment, Observer {
@@ -73,7 +73,7 @@ abstract class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListen
         }
     }
 
-    abstract var scrollListener: EndlessRecyclerViewScrollListener
+    private var scrollListener: EndlessRecyclerViewScrollListener? = null
 
     private fun initView() {
         val mLayoutManager = GridLayoutManager(context, 2)
@@ -84,7 +84,7 @@ abstract class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListen
                 viewModel.getExhibits(page, 20, viewModel.searchString.value)
             }
         }
-        rv_main_home.addOnScrollListener(scrollListener)
+        rv_main_home.addOnScrollListener(scrollListener as EndlessRecyclerViewScrollListener)
         progressBar_home.visibility = View.GONE
     }
 

@@ -2,6 +2,7 @@ package kz.digitalart.app.data.source.db
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.preference.PreferenceManager
 import javax.inject.Inject
 
 class PrefsImpl @Inject constructor(appContext: Context) : Prefs {
@@ -11,7 +12,7 @@ class PrefsImpl @Inject constructor(appContext: Context) : Prefs {
     private val fileName = "DigitalArtShrdPref"
 
     private val prefs: SharedPreferences =
-        appContext.getSharedPreferences(fileName, Context.MODE_PRIVATE)
+        PreferenceManager.getDefaultSharedPreferences(appContext)
 
     override fun setLanguage(lang: String) {
         val editor = prefs.edit()
