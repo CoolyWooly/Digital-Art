@@ -22,6 +22,6 @@ fun loadImage(imageView: ImageView, exhibit: Exhibit) {
 }
 
 @BindingAdapter("set_url")
-fun setUrl(audioPlayer: AudioPlayer, url: String) {
+fun setUrl(audioPlayer: AudioPlayer, url: String?) {
     audioPlayer.setURL(url)
 }

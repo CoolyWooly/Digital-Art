@@ -3,7 +3,7 @@
 
 
     <item
-        android:bottom="-700dp"
+        android:bottom="-300dp"
         android:left="200dp"
         android:right="-200dp"
         android:top="-200dp">
@@ -14,5 +14,4 @@
             </shape>
         </rotate>
     </item>
-    <!-- This rectangle for the left side -->
 </layer-list>

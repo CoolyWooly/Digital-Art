@@ -10,12 +10,22 @@ class QrViewModel @Inject constructor(
     private val baseCloudRepository: BaseCloudRepository
 ) : BaseViewModel() {
     private val TAG = this::class.java.simpleName
-    val exhibitsData: MutableLiveData<Exhibit> by lazy { MutableLiveData<Exhibit>() }
+    var exhibitsData: MutableLiveData<Exhibit> = MutableLiveData()
 
     fun getExhibit(id: Int?) {
-        doWork {
-            val exhibits = baseCloudRepository.getExhibit(id, "kk")
-            exhibitsData.postValue(exhibits)
+        if (id == 2) {
+            val exhibit = Exhibit(2, 1, 4.5, "Колосс", "описание2", "1992", "Ерлан", null, null)
+            exhibitsData.postValue(exhibit)
+        } else {
+            val exhibit = Exhibit(5, 1, 3.5, "Башня", "описание5", "1995", "Аслан", null, null)
+            exhibitsData.postValue(exhibit)
         }
+
+//        doWork {
+//            val exhibits = baseCloudRepository.getExhibit(id, "kk")
+//            exhibitsData.postValue(exhibits)
+//        }
+
+        exhibitsData = MutableLiveData()
     }
 }

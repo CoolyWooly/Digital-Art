@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.os.Handler
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -49,6 +50,7 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.e(TAG, "onCreateView")
 
         return inflater.inflate(R.layout.fragment_qr, container, false)
     }
@@ -56,6 +58,7 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).tv_toolbar.text = getString(R.string.nav_item_qr)
+        Log.e(TAG, "onViewCreated")
 
         mScannerView = object : ZBarScannerView(context) {
             override fun createViewFinderView(context: Context): IViewFinder {
@@ -70,6 +73,7 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
                 action.exhibit = it
                 val navController = Navigation.findNavController(view)
                 navController.navigate(action)
+                mScannerView?.stopCamera()
             })
         }
     }
@@ -89,6 +93,7 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
 
     override fun onResume() {
         super.onResume()
+        Log.e(TAG, "onResume")
         mScannerView?.setResultHandler(this) // Register ourselves as a handler for scan results.
         mScannerView?.startCamera()
     }
@@ -96,6 +101,7 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
     override fun onPause() {
         super.onPause()
         mScannerView?.stopCamera()           // Stop camera on pause
+        Log.e(TAG, "onPause")
     }
 
     private class CustomViewFinderView : ViewFinderView {

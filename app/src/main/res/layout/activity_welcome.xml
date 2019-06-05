@@ -31,6 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:tint="@color/color_092756"
+            app:layout_constraintHeight_percent="0.50"
+            app:layout_constraintVertical_bias="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_trapezoid" />
