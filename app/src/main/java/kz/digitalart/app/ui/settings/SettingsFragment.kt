@@ -72,6 +72,7 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener, LanguagesBottom
     }
 
     override fun languageClicked() {
+        activity?.onConfigurationChanged(activity?.applicationContext!!.resources!!.configuration)
         activity?.recreate()
     }
 }

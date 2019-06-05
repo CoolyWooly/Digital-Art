@@ -9,8 +9,6 @@ class PrefsImpl @Inject constructor(appContext: Context) : Prefs {
 
     private val LANGUAGE = "LANGUAGE"
 
-    private val fileName = "DigitalArtShrdPref"
-
     private val prefs: SharedPreferences =
         PreferenceManager.getDefaultSharedPreferences(appContext)
 

@@ -91,8 +91,7 @@ class LanguagesBottomSheetDialogFragment constructor(
         tv_russian.setTypeface(tv_russian.typeface, Typeface.BOLD)
         iv_russian.visibility = View.VISIBLE
 
-        prefsImpl.setLanguage("ru")
-        updateResources(mContext, "ru")
+        changeLang("ru")
     }
 
     private fun kazakhSelected() {
@@ -101,8 +100,7 @@ class LanguagesBottomSheetDialogFragment constructor(
         tv_kazakh.setTypeface(tv_russian.typeface, Typeface.BOLD)
         iv_kazakh.visibility = View.VISIBLE
 
-        prefsImpl.setLanguage("kk")
-        updateResources(mContext, "kk")
+        changeLang("kk")
     }
 
     private fun englishSelected() {
@@ -111,7 +109,12 @@ class LanguagesBottomSheetDialogFragment constructor(
         tv_english.setTypeface(tv_russian.typeface, Typeface.BOLD)
         iv_english.visibility = View.VISIBLE
 
-        prefsImpl.setLanguage("en")
-        updateResources(mContext, "en")
+        changeLang("en")
+    }
+
+    private fun changeLang(lang: String) {
+        prefsImpl.setLanguage(lang)
+        updateResources(mContext, lang)
+        updateResources(mContext?.applicationContext, lang)
     }
 }

@@ -23,9 +23,9 @@ class WelcomeActivity : DaggerAppCompatActivity(), OnLangItemClickListener {
         ViewModelProviders.of(this, viewModelFactory).get(WelcomeViewModel::class.java)
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        langItemClick(viewModel.prefsImpl.getLanguage())
 //        val model = WelcomeViewModel()
 //        val binding = DataBindingUtil.setContentView<ViewDataBinding>(
 //            this,
@@ -51,6 +51,8 @@ class WelcomeActivity : DaggerAppCompatActivity(), OnLangItemClickListener {
 
     override fun langItemClick(lang: String) {
         updateResources(this, lang)
+        updateResources(applicationContext, lang)
+        onConfigurationChanged(resources.configuration)
         viewModel.prefsImpl.setLanguage(lang)
     }
 }
