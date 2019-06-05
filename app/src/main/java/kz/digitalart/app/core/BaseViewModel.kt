@@ -1,5 +1,6 @@
 package kz.digitalart.app.core
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
@@ -55,7 +56,15 @@ abstract class BaseViewModel : ViewModel() {
         coroutineScope: CoroutineScope,
         context: CoroutineContext
     ) {
-        coroutineScope.launch {
+//        coroutineScope.launch {
+//            withContext(context) {
+//                doOnAsyncBlock.invoke(this)
+//            }
+//        }
+
+        coroutineScope.launch(CoroutineExceptionHandler { _, e ->
+            Log.e("TAG", "CoroutineExceptionHandler", e)
+        }) {
             withContext(context) {
                 doOnAsyncBlock.invoke(this)
             }
