@@ -6,7 +6,10 @@
     android:layout_height="wrap_content"
     android:background="@drawable/player_rounded"
     android:gravity="center_vertical"
-    android:padding="10dp">
+    android:paddingLeft="10dp"
+    android:paddingTop="5dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="5dp">
 
     <Button
         android:id="@+id/btn_play"
@@ -29,6 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/seekBar"
         android:layout_marginStart="10dp"
+        android:textColor="@color/color_4A4E52"
+        android:textSize="10sp"
         tools:text="0:00" />
 
     <TextView
@@ -37,6 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/seekBar"
         android:layout_marginEnd="15dp"
+        android:textColor="@color/color_4A4E52"
+        android:textSize="10sp"
         tools:text="3:43" />
 
     <TextView

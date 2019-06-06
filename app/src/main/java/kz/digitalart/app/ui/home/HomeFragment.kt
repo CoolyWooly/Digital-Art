@@ -50,26 +50,35 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
         return binding.root
     }
 
+    private var searchStr = ""
+    private var isadded = false
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).tv_toolbar.text = getString(R.string.nav_item_main)
         initView()
-        with(viewModel) {
-            searchString.observe(this@HomeFragment, Observer {
-                if (it.isNullOrEmpty() || it.length > 2) {
-                    getExhibits(0, 20, it)
-                    scrollListener?.resetValues()
-                }
-            })
-            exhibitsData.observe(this@HomeFragment, Observer {
-                if (it!!.isNotEmpty()) {
-                    adapter.add(it)
-                }
-            })
-            error.observe(this@HomeFragment, Observer {
-                progressBar_home.visibility = View.GONE
-                Toast.makeText(context, "${it?.message}", Toast.LENGTH_LONG).show()
-            })
+
+        if (!isadded) {
+            isadded = true
+            with(viewModel) {
+                searchString.observe(this@HomeFragment, Observer {
+                    if ((it.isNullOrEmpty() || it.length > 2) && searchStr != it) {
+                        searchStr = it
+                        scrollListener?.resetValues()
+                        adapter.clear()
+                        getExhibits(0, 20, it)
+                    }
+                })
+                exhibitsData.observe(this@HomeFragment, Observer {
+                    if (it!!.isNotEmpty()) {
+                        adapter.add(it)
+                    }
+                })
+                error.observe(this@HomeFragment, Observer {
+                    progressBar_home.visibility = View.GONE
+                    Toast.makeText(context, "${it?.message}", Toast.LENGTH_LONG).show()
+                })
+            }
         }
     }
 

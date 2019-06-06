@@ -20,7 +20,9 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
 
-        <activity android:name="kz.digitalart.app.ui.welcome.WelcomeActivity">
+        <activity
+            android:name="kz.digitalart.app.ui.welcome.WelcomeActivity"
+            android:launchMode= "singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +30,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="kz.digitalart.app.ui.MainActivity" />
+        <activity
+            android:name="kz.digitalart.app.ui.MainActivity"
+            android:launchMode= "singleInstance"/>
     </application>
 
 </manifest>

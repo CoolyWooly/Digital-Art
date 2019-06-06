@@ -8,6 +8,7 @@
     <color name="black">#000</color>
     <color name="bg">#FFF</color>FAF8F8
     <color name="color_C0C0C0">#C0C0C0</color>
+    <color name="color_F3F3F3">#F3F3F3</color>
     <color name="color_285DDC">#285DDC</color>
     <color name="color_0A2447">#0A2447</color>
     <color name="color_092756">#092756</color>
@@ -15,5 +16,6 @@
     <color name="color_3062EF">#3062EF</color>
     <color name="color_363636">#363636</color> <!-- grey text -->
     <color name="color_072046">#072046</color>
+    <color name="color_4A4E52">#4A4E52</color>
     <color name="color_0CDE3F3F">#0CDE3F3F</color>
 </resources>

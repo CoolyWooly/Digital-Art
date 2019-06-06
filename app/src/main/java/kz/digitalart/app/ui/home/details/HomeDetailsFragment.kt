@@ -51,6 +51,11 @@ class HomeDetailsFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).tv_toolbar.text = getString(R.string.overview)
         audio_player.setURL(exhibit?.audio)
+        if (exhibit?.photos.isNullOrEmpty()) {
+            carousel_slider.visibility = View.GONE
+        } else {
+            carousel_slider.setItems(exhibit?.photos!!)
+        }
         exhibit?.photos?.let {
             carousel_slider.setItems(it)
         }

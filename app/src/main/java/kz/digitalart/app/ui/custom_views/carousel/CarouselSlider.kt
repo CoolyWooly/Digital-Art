@@ -6,14 +6,12 @@ import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import android.widget.Toast
 import com.azoft.carousellayoutmanager.CarouselLayoutManager
 import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
 import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.azoft.carousellayoutmanager.DefaultChildSelectionListener
 import kotlinx.android.synthetic.main.view_carousel_slider.view.*
 import kz.digitalart.app.R
-import java.util.*
 
 class CarouselSlider : LinearLayout {
 
@@ -60,9 +58,7 @@ class CarouselSlider : LinearLayout {
         list_horizontal.addOnScrollListener(CenterScrollListener())
         // enable center post touching on item and item click listener
         DefaultChildSelectionListener.initCenterItemListener({ recyclerView, carouselLayoutManager, v ->
-            val position = recyclerView.getChildLayoutPosition(v)
-            val msg = String.format(Locale.US, "Item %1\$d was clicked", position)
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+
         }, list_horizontal, layoutManager)
     }
 

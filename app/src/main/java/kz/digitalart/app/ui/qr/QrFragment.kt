@@ -1,6 +1,8 @@
 package kz.digitalart.app.ui.qr
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -12,7 +14,8 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -34,6 +37,7 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
 
     private val TAG: String = QrFragment::class.java.simpleName
     private var mScannerView: ZBarScannerView? = null
+    private val CAMERA_REQUEST_CODE = 0
 
     companion object {
         val FRAGMENT_NAME: String = QrFragment::class.java.name
@@ -51,6 +55,7 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
         savedInstanceState: Bundle?
     ): View? {
         Log.e(TAG, "onCreateView")
+        setupPermissions()
 
         return inflater.inflate(R.layout.fragment_qr, container, false)
     }
@@ -78,9 +83,21 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
         }
     }
 
-    override fun handleResult(rawResult: Result) {
-        Toast.makeText(context, rawResult.contents, Toast.LENGTH_SHORT).show()
+    private fun setupPermissions() {
+        val permission = ContextCompat.checkSelfPermission(context!!,
+            Manifest.permission.CAMERA)
 
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            makeRequest()
+        }
+    }
+
+    private fun makeRequest() {
+        requestPermissions(arrayOf(Manifest.permission.CAMERA),
+            CAMERA_REQUEST_CODE)
+    }
+
+    override fun handleResult(rawResult: Result) {
         viewModel.getExhibit(rawResult.contents.toInt())
 
 
@@ -148,6 +165,29 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
         companion object {
             const val TRADE_MARK_TEXT = ""
             const val TRADE_MARK_TEXT_SIZE_SP = 40
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            CAMERA_REQUEST_CODE -> {
+                if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    val builder = AlertDialog.Builder(context!!, R.style.MyAlertDialogStyle)
+                    builder.setTitle("Камера")
+                    builder.setMessage("Вкл разрешение")
+                    builder.setPositiveButton("YES"){dialog, which ->
+                    }
+                    val dialog: AlertDialog = builder.create()
+                    dialog.show()
+                } else {
+
+                }
+            }
         }
     }
 }

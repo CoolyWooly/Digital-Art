@@ -26,12 +26,6 @@ class WelcomeActivity : DaggerAppCompatActivity(), OnLangItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         langItemClick(viewModel.prefsImpl.getLanguage())
-//        val model = WelcomeViewModel()
-//        val binding = DataBindingUtil.setContentView<ViewDataBinding>(
-//            this,
-//            R.layout.activity_welcome
-//        ) as ActivityWelcomeBinding
-//        binding.model = model
         setContentView(R.layout.activity_welcome)
 
         drawer_layout.setOnClickListener {
@@ -43,6 +37,7 @@ class WelcomeActivity : DaggerAppCompatActivity(), OnLangItemClickListener {
             startActivity(intent)
             finish()
         }
+        setButtonLang(viewModel.prefsImpl.getLanguage())
 
         sp_lang.setLanguage(viewModel.prefsImpl.getLanguage())
 
@@ -54,5 +49,17 @@ class WelcomeActivity : DaggerAppCompatActivity(), OnLangItemClickListener {
         updateResources(applicationContext, lang)
         onConfigurationChanged(resources.configuration)
         viewModel.prefsImpl.setLanguage(lang)
+
+        if (btn_start != null) {
+            setButtonLang(lang)
+        }
+    }
+
+    private fun setButtonLang(lang: String) {
+        when (lang) {
+            "ru" -> btn_start.text = getString(R.string.start)
+            "kk" -> btn_start.text = getString(R.string.start_kk)
+            "en" -> btn_start.text = getString(R.string.start_en)
+        }
     }
 }
