@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/nav_item_main">
+    app:startDestination="@id/nav_item_qr">
     <fragment
         android:id="@+id/nav_item_qr"
         android:name="kz.digitalart.app.ui.qr.QrFragment"
@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_qr">
 
         <action
-            android:id="@+id/action_fragment_qr_to_fragment_liked_details"
+            android:id="@+id/action_fragment_qr_to_fragment_home_details"
             app:destination="@id/fragment_home_details" />
 
     </fragment>

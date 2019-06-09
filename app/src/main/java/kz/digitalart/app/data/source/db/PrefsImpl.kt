@@ -8,6 +8,7 @@ import javax.inject.Inject
 class PrefsImpl @Inject constructor(appContext: Context) : Prefs {
 
     private val LANGUAGE = "LANGUAGE"
+    private val RATINGS = "RATINGS"
 
     private val prefs: SharedPreferences =
         PreferenceManager.getDefaultSharedPreferences(appContext)
@@ -20,5 +21,17 @@ class PrefsImpl @Inject constructor(appContext: Context) : Prefs {
 
     override fun getLanguage(): String {
         return prefs.getString(LANGUAGE, "ru")
+    }
+
+    override fun setRatings(id: Int) {
+        val editor = prefs.edit()
+        var def = prefs.getString(RATINGS, "")
+        def += " $id"
+        editor.putString(RATINGS, def)
+        editor.commit()
+    }
+
+    override fun getRatings(): String {
+        return prefs.getString(RATINGS, "")
     }
 }

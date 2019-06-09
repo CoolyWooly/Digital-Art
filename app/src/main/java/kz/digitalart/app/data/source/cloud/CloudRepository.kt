@@ -3,6 +3,7 @@ package kz.digitalart.app.data.source.cloud
 import kz.digitalart.app.data.restful.ApiService
 import kz.digitalart.app.domain.model.About
 import kz.digitalart.app.domain.model.Exhibit
+import kz.digitalart.app.domain.model.Rating
 
 class CloudRepository(private val apIs: ApiService) : BaseCloudRepository {
     override suspend fun getExhibit(id: Int?, lang: String?): Exhibit {
@@ -31,7 +32,7 @@ class CloudRepository(private val apIs: ApiService) : BaseCloudRepository {
         return apIs.getAboutAsync(lang).await()
     }
 
-    override suspend fun setExhibitRate(id: Int?, rate: Double?): About {
+    override suspend fun setExhibitRate(id: Int?, rate: Double?): Rating {
         return apIs.setExhibitRateAsync(id, rate).await()
     }
 }

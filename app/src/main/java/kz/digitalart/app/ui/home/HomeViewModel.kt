@@ -18,7 +18,7 @@ class HomeViewModel @Inject constructor(
     val searchString: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
     init {
-        getExhibits(0, 20, null)
+//        getExhibits(0, 20, null)
     }
 
     fun getExhibits(page: Int?, limit: Int?, searchString: String?) {

@@ -1,10 +1,18 @@
 package kz.digitalart.app.ui.home.details
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RatingBar
+import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerFragment
@@ -44,6 +52,7 @@ class HomeDetailsFragment : DaggerFragment() {
         )
         exhibit = arguments?.getSerializable("exhibit") as Exhibit
         binding.item = exhibit
+        Log.e(TAG, exhibit?.id.toString())
         return binding.root
     }
 
@@ -56,8 +65,35 @@ class HomeDetailsFragment : DaggerFragment() {
         } else {
             carousel_slider.setItems(exhibit?.photos!!)
         }
-        exhibit?.photos?.let {
-            carousel_slider.setItems(it)
+        tv_rate.setOnClickListener {
+            if (!viewModel.prefsImpl.getRatings().contains(exhibit?.id.toString())) {
+                showRateAlertDialog()
+            }
         }
+        with(viewModel) {
+            ratingData.observe(this@HomeDetailsFragment, Observer {
+                tv_rate.text = it.rating?.toString()
+            })
+        }
+    }
+
+    private fun showRateAlertDialog() {
+        val dialog = Dialog(context!!)
+        dialog.setContentView(R.layout.dialog_rate)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val ratingBar = dialog.findViewById(R.id.rb_rate) as RatingBar
+        val btnContinue = dialog.findViewById(R.id.btn_continue) as TextView
+
+        btnContinue.setOnClickListener {
+            if (ratingBar.rating == 0f) {
+                Toast.makeText(context, R.string.select_rating, Toast.LENGTH_LONG).show()
+            } else {
+                viewModel.prefsImpl.setRatings(exhibit?.id!!)
+                viewModel.setExhibitRate(exhibit?.id, ratingBar.rating.toDouble())
+                dialog.dismiss()
+            }
+        }
+        dialog.show()
     }
 }

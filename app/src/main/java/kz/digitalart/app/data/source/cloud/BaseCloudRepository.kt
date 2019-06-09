@@ -2,6 +2,7 @@ package kz.digitalart.app.data.source.cloud
 
 import kz.digitalart.app.domain.model.About
 import kz.digitalart.app.domain.model.Exhibit
+import kz.digitalart.app.domain.model.Rating
 
 interface BaseCloudRepository {
     suspend fun getExhibit(id: Int?, lang: String?): Exhibit
@@ -12,5 +13,5 @@ interface BaseCloudRepository {
 
     suspend fun getAbout(lang: String?): About
 
-    suspend fun setExhibitRate(id: Int?, rate: Double?): About
+    suspend fun setExhibitRate(id: Int?, rate: Double?): Rating
 }

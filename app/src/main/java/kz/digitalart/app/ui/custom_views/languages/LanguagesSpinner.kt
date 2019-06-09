@@ -67,10 +67,12 @@ class LanguagesSpinner : ConstraintLayout {
     }
 
     fun slideUp() {
+        tv_selected_lang.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_chevron_down, 0)
         ll_dropdown.animate().translationY(-400f).setDuration(300).start()
     }
 
     fun slideDown() {
+        tv_selected_lang.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_chevron_up, 0)
         ll_dropdown.animate().translationY(0f).setDuration(300).start()
     }
 

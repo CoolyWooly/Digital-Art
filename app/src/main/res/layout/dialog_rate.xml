@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_rounded"
+    android:padding="32dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/rate_exhibit"
+        android:textColor="@color/color_363636"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <RatingBar
+        android:id="@+id/rb_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:minHeight="0dp"
+        android:numStars="5"
+        android:progressDrawable="@drawable/ratingbar"
+        android:rating="0"
+        android:stepSize="1" />
+
+    <TextView
+        android:id="@+id/btn_continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/button_rounded_empty"
+        android:drawableRight="@drawable/ic_arrow"
+        android:drawablePadding="15dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="@string/text_continue"
+        android:textColor="@color/color_868E96"
+        android:textSize="15sp" />
+</LinearLayout>

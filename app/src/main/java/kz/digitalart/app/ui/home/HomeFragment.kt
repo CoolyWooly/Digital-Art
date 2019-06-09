@@ -59,10 +59,12 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
         initView()
 
         if (!isadded) {
+            viewModel.getExhibits(0, 20, null)
+
             isadded = true
             with(viewModel) {
                 searchString.observe(this@HomeFragment, Observer {
-                    if ((it.isNullOrEmpty() || it.length > 2) && searchStr != it) {
+                    if ((it.isNullOrEmpty() || it.length > 1) && searchStr != it) {
                         searchStr = it
                         scrollListener?.resetValues()
                         adapter.clear()
@@ -73,6 +75,7 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
                     if (it!!.isNotEmpty()) {
                         adapter.add(it)
                     }
+                    swipe.isRefreshing = false
                 })
                 error.observe(this@HomeFragment, Observer {
                     progressBar_home.visibility = View.GONE
@@ -95,6 +98,12 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
         }
         rv_main_home.addOnScrollListener(scrollListener as EndlessRecyclerViewScrollListener)
         progressBar_home.visibility = View.GONE
+
+        swipe.setOnRefreshListener {
+            scrollListener?.resetValues()
+            adapter.clear()
+            viewModel.getExhibits(0, 20, searchStr)
+        }
     }
 
     override fun onExhibitClick(exhibit: Exhibit) {

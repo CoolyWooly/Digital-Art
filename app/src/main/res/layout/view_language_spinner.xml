@@ -16,7 +16,7 @@
 
         <RelativeLayout
             android:id="@+id/rv_first_choice"
-            android:layout_width="45dp"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
@@ -27,7 +27,7 @@
                 android:id="@+id/tv_first_choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:text="ENG"
                 android:textColor="@color/white"
                 android:textSize="15sp"
@@ -44,7 +44,7 @@
 
         <RelativeLayout
             android:id="@+id/rv_second_choice"
-            android:layout_width="45dp"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
@@ -55,7 +55,7 @@
                 android:id="@+id/tv_second_choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:text="KAZ"
                 android:textColor="@color/white"
                 android:textSize="15sp"
@@ -66,11 +66,13 @@
 
     <TextView
         android:id="@+id/tv_selected_lang"
-        android:layout_width="45dp"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:background="@color/color_092756"
         android:padding="5dp"
+        android:gravity="center"
         android:text="RU"
+        android:drawableRight="@drawable/ic_chevron_down"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"

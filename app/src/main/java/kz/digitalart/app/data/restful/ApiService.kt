@@ -3,6 +3,7 @@ package kz.digitalart.app.data.restful
 import kotlinx.coroutines.Deferred
 import kz.digitalart.app.domain.model.About
 import kz.digitalart.app.domain.model.Exhibit
+import kz.digitalart.app.domain.model.Rating
 import retrofit2.http.*
 
 interface ApiService {
@@ -34,9 +35,10 @@ interface ApiService {
         @Query("lang") lang: String?
     ): Deferred<About>
 
-    @POST("exhibit/rate")
+    @FormUrlEncoded
+    @POST("api/exhibit/rate")
     fun setExhibitRateAsync(
         @Field("id") id: Int?,
         @Field("rate") rate: Double?
-    ): Deferred<About>
+    ): Deferred<Rating>
 }
