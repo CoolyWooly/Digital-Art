@@ -16,12 +16,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
+        <kz.digitalart.app.ui.custom_views.TopCropImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/splashscreen"
+            android:src="@drawable/splashscreen4"
+            app:layout_constraintHeight_percent="0.7"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0" />

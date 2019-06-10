@@ -21,7 +21,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:minHeight="0dp"
         android:numStars="5"
         android:progressDrawable="@drawable/ratingbar"
         android:rating="0"

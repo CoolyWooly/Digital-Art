@@ -1,7 +1,6 @@
 package kz.digitalart.app.di.module
 
 import com.google.gson.Gson
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import kz.digitalart.app.core.Config
@@ -26,7 +25,6 @@ class NetworkModule {
     ): Retrofit {
         return Retrofit.Builder().baseUrl(Config.HOST)
             .addConverterFactory(gsonConverterFactory)
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(okHttpClient)
             .build()
     }

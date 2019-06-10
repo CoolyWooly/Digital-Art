@@ -7,7 +7,7 @@ import kz.digitalart.app.domain.model.Rating
 
 class CloudRepository(private val apIs: ApiService) : BaseCloudRepository {
     override suspend fun getExhibit(id: Int?, lang: String?): Exhibit {
-        return apIs.getExhibitAsync(id, lang).await()
+        return apIs.getExhibitAsync(id, lang)
     }
 
     override suspend fun getExhibits(
@@ -16,7 +16,7 @@ class CloudRepository(private val apIs: ApiService) : BaseCloudRepository {
         search: String?,
         lang: String?
     ): List<Exhibit> {
-        return apIs.getExhibitsAsync(page, limit, search, lang).await()
+        return apIs.getExhibitsAsync(page, limit, search, lang)
     }
 
     override suspend fun getPopular(
@@ -25,14 +25,19 @@ class CloudRepository(private val apIs: ApiService) : BaseCloudRepository {
         search: String?,
         lang: String?
     ): List<Exhibit> {
-        return apIs.getPopularAsync(page, limit, search, lang).await()
+        return apIs.getPopularAsync(page, limit, search, lang)
     }
 
-    override suspend fun getAbout(lang: String?): About {
-        return apIs.getAboutAsync(lang).await()
+    override suspend fun getAbout(
+        lang: String?
+    ): About {
+        return apIs.getAboutAsync(lang)
     }
 
-    override suspend fun setExhibitRate(id: Int?, rate: Double?): Rating {
-        return apIs.setExhibitRateAsync(id, rate).await()
+    override suspend fun setExhibitRate(
+        id: Int?,
+        rate: Double?
+    ): Rating {
+        return apIs.setExhibitRateAsync(id, rate)
     }
 }
