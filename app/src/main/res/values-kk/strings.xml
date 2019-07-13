@@ -1,47 +1,29 @@
 <resources>
     <string name="app_name">DigitalArt</string>
     <string name="loading">Пожалуйста подождите...</string>
-    <string name="nav_item_qr">Сканировать QR</string>
+    <string name="nav_item_qr">QR сканерлеу</string>
     <string name="nav_item_main">Каталог</string>
-    <string name="nav_item_settings">Настройки</string>
-    <string name="nav_item_about">Қосымшалар</string>
+    <string name="nav_item_settings">Баптау</string>
+    <string name="nav_item_about">Қолданба жайында</string>
     <string name="start">Начать</string>
     <string name="start_kk">Бастау</string>
     <string name="start_en">Start</string>
     <string name="catalog">Каталог</string>
-    <string name="about_description">1. Мобильное приложение "Digital Art" является аудиогидом по экспонатам Музея, что позволит услышать истории по экспонатам, особенностях их создания.
+    <string name="language_selection">Тілді таңдау</string>
+    <string name="about_app">Қолданба жайында</string>
+    <string name="overview">Шолу</string>
+    <string name="exhibits">Экспонаттар</string>
+    <string name="find_exhibit">Экспонатты іздеу</string>
+    <string name="point_camera_at_exhibit">QR кодты сканерлеу үшін
         \n
-        \n
-        2. Приложение будет полезно как просто интересующимся живописью, историей, так и людям продвинутым в данной сфере, например учащимся художественных учебных заведений. Вы погрузитесь в удивительный мир живописи и историй.
-        \n
-        \n
-        3. Основные возможности мобильного приложения:
-        \n
-        \n
-        - экспонаты с полным описанием, фотографиями и озвучкой на русском и казахском языке
-        \n
-        - просмотр экспонатов как находясь в музее, так и не выходя из дома
-        \n
-        - поиск по экспонатам
-        \n
-        - экскурсия по музею не вставая из кресла
-    </string>
-    <string name="language_selection">Выбор языка</string>
-    <string name="liked">Понравившиеся</string>
-    <string name="about_app">Қосымшалар</string>
-    <string name="overview">Обзор</string>
-    <string name="exhibits">Экспонаты</string>
-    <string name="find_exhibit">Найти экспонат</string>
-    <string name="point_camera_at_exhibit">Наведите камеру на экспонат,
-        \n
-        чтобы отсканировать QR-код</string>
-    <string name="popular">Популярное</string>
+        камераны экспонатқа қаратыңыз</string>
+    <string name="popular">Танымал</string>
     <string name="russian">Русский</string>
     <string name="kazakh">Қазақша</string>
     <string name="english">English</string>
-    <string name="rate_exhibit">Оцените экспонат</string>
-    <string name="text_continue">Продолжить</string>
-    <string name="select_rating">Выберите оценку</string>
+    <string name="rate_exhibit">Экспонатқа баға беріңіз</string>
+    <string name="text_continue">Жалғастыру</string>
+    <string name="select_rating">Баға беріңіз</string>
     <string name="camera">Камера</string>
-    <string name="camera_permission">Для сканирования QR кода требуется включить разрешение на доступ к камере</string>
+    <string name="camera_permission">QR кодты сканерлеу үшін  камераға қатынасты рұқсат ету қажет</string>
 </resources>

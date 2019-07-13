@@ -18,7 +18,8 @@ interface ApiService {
         @Query("page") page: Int?,
         @Query("limit") limit: Int?,
         @Query("search") search: String?,
-        @Query("lang") lang: String?
+        @Query("lang") lang: String?,
+        @Query("by_date") by_date: String?
     ): List<Exhibit>
 
     @GET("api/exhibits/popular")

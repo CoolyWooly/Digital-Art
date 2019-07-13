@@ -24,7 +24,7 @@ class HomeViewModel @Inject constructor(
     fun getExhibits(page: Int?, limit: Int?, searchString: String?) {
         doWork {
             val exhibits =
-                baseCloudRepository.getExhibits(page, limit, searchString, prefsImpl.getLanguage())
+                baseCloudRepository.getExhibits(page, limit, searchString, prefsImpl.getLanguage(), "desc")
             exhibitsData.postValue(exhibits)
         }
     }

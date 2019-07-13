@@ -8,6 +8,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="400dp" />
+        android:layout_height="320dp" />
 
 </LinearLayout>

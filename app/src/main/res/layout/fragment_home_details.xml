@@ -31,7 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -41,7 +40,7 @@
                     android:layout_weight="1"
                     android:text="@{item.name}"
                     android:textColor="@color/color_363636"
-                    android:textSize="21sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     tools:text="Давид" />
 
@@ -49,7 +48,7 @@
                     android:id="@+id/tv_rate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_marginEnd="8dp"
                     android:drawableStart="@drawable/ic_star_border_24dp"
                     android:drawablePadding="5dp"
                     android:padding="5dp"
@@ -61,8 +60,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-
                 android:orientation="horizontal">
 
                 <TextView
@@ -70,6 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:textSize="12sp"
                     android:text="@{item.year}"
                     android:textColor="@color/color_363636"
                     tools:text="12-12-19" />
@@ -81,7 +79,7 @@
                     android:layout_marginStart="10dp"
                     android:text="@{item.author}"
                     android:textColor="@color/color_363636"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     tools:text="author" />
             </LinearLayout>
 
@@ -89,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@color/color_C0C0C0" />
 
@@ -97,7 +95,7 @@
                 android:id="@+id/audio_player"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="8dp"
                 app:set_url="@{item.audio}" />
 
             <TextView
@@ -106,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:textColor="#424242"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 app:set_html="@{item.description}"
                 tools:text="description" />
 

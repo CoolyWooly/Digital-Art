@@ -51,28 +51,37 @@ class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletion
         mediaPlayer.setOnCompletionListener(this)
     }
 
+    var isPrepared = false
     override fun onClick(view: View?) {
         try {
             mediaPlayer.setDataSource(URL)
-            mediaPlayer.prepare()
-            lengthOfAudio = mediaPlayer.duration
+            mediaPlayer.prepareAsync()
         } catch (e: Exception) {
             //Log.e("AudioPlayer", e.message)
         }
 
-        when (view?.id) {
-            R.id.btn_play -> {
-                if (mediaPlayer.isPlaying) {
-                    pauseAudio()
-                    setPlayIcon()
-                } else {
-                    playAudio()
-                    setPauseIcon()
-                }
-            }
+        mediaPlayer.setOnPreparedListener {
+            isPrepared = true
+            lengthOfAudio = it.duration
+            playPause()
         }
 
+        when (view?.id) {
+            R.id.btn_play -> {
+                if (isPrepared) playPause()
+            }
+        }
         updateSeekProgress()
+    }
+
+    private fun playPause() {
+        if (mediaPlayer.isPlaying) {
+            pauseAudio()
+            setPlayIcon()
+        } else {
+            playAudio()
+            setPauseIcon()
+        }
     }
 
     override fun onCompletion(mp: MediaPlayer?) {

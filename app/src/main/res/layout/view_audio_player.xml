@@ -7,9 +7,7 @@
     android:background="@drawable/player_rounded"
     android:gravity="center_vertical"
     android:paddingLeft="10dp"
-    android:paddingTop="5dp"
-    android:paddingRight="10dp"
-    android:paddingBottom="5dp">
+    android:paddingRight="10dp">
 
     <Button
         android:id="@+id/btn_play"
@@ -30,6 +28,7 @@
         android:id="@+id/progress_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
         android:layout_alignStart="@+id/seekBar"
         android:layout_marginStart="10dp"
         android:textColor="@color/color_4A4E52"
@@ -41,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/seekBar"
+        android:paddingTop="5dp"
         android:layout_marginEnd="15dp"
         android:textColor="@color/color_4A4E52"
         android:textSize="10sp"

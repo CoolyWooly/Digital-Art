@@ -14,9 +14,10 @@ class CloudRepository(private val apIs: ApiService) : BaseCloudRepository {
         page: Int?,
         limit: Int?,
         search: String?,
-        lang: String?
+        lang: String?,
+        by_date: String?
     ): List<Exhibit> {
-        return apIs.getExhibitsAsync(page, limit, search, lang)
+        return apIs.getExhibitsAsync(page, limit, search, lang, by_date)
     }
 
     override suspend fun getPopular(
