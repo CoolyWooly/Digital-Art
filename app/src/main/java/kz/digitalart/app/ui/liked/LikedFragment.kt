@@ -11,7 +11,6 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
 import kz.digitalart.app.domain.model.ExhibitModel
 import kz.digitalart.app.ui.MainActivity
@@ -41,7 +40,7 @@ class LikedFragment : DaggerFragment(), LikedAdapter.OnExhibitClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).tv_toolbar.text = getString(R.string.popular)
+        (activity as MainActivity).setToolbarTitle(getString(R.string.popular))
         initView()
         with(viewModel) {
             exhibitsData.observe(viewLifecycleOwner, Observer {

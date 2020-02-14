@@ -1,7 +1,6 @@
 package kz.digitalart.app.ui
 
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import dagger.android.support.DaggerAppCompatActivity
@@ -16,9 +15,8 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val toolbar: Toolbar by lazy { toolbar_main_activity }
-        setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        setSupportActionBar(toolbar_main_activity)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         setupNavigation()
     }
 
@@ -26,6 +24,10 @@ class MainActivity : DaggerAppCompatActivity() {
         val navController = Navigation.findNavController(this, R.id.container)
         NavigationUI.setupActionBarWithNavController(this, navController)
         NavigationUI.setupWithNavController(nav_view, navController)
+    }
+
+    fun setToolbarTitle(title: String) {
+        tv_toolbar.text = title
     }
 
     override fun onSupportNavigateUp() = Navigation.findNavController(this, R.id.container).navigateUp()

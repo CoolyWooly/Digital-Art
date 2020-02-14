@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
 import kz.digitalart.app.databinding.FragmentAboutBinding
 import kz.digitalart.app.ui.MainActivity
@@ -37,7 +36,7 @@ class AboutFragment : DaggerFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        (activity as MainActivity).tv_toolbar.text = getString(R.string.nav_item_about)
+        (activity as MainActivity).setToolbarTitle(getString(R.string.nav_item_about))
         with(viewModel) {
             data.observe(viewLifecycleOwner, Observer {
                 binding?.about = it

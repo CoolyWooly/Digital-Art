@@ -46,9 +46,10 @@ class WelcomeActivity : DaggerAppCompatActivity(), OnLangItemClickListener {
     }
 
     override fun langItemClick(lang: String) {
-        updateResources(applicationContext, lang)
-        onConfigurationChanged(resources.configuration)
         viewModel.prefsImpl.setLanguage(lang)
+        updateResources(this, lang)
+        updateResources(this.applicationContext, lang)
+        onConfigurationChanged(resources.configuration)
 
         if (btn_start != null) {
             setButtonLang(lang)

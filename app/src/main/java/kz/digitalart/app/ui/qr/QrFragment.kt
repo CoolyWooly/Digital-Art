@@ -23,7 +23,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_qr.*
-import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
 import kz.digitalart.app.ui.MainActivity
 import me.dm7.barcodescanner.core.IViewFinder
@@ -58,7 +57,7 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).tv_toolbar.text = getString(R.string.nav_item_qr)
+        (activity as MainActivity).setToolbarTitle(getString(R.string.nav_item_qr))
         Log.e(TAG, "onViewCreated")
 
         mScannerView = object : ZBarScannerView(context) {

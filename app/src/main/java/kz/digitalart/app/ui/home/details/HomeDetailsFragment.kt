@@ -16,7 +16,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_home_details.*
-import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
 import kz.digitalart.app.databinding.FragmentHomeDetailsBinding
 import kz.digitalart.app.domain.model.ExhibitModel
@@ -53,7 +52,7 @@ class HomeDetailsFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).tv_toolbar.text = getString(R.string.overview)
+        (activity as MainActivity).setToolbarTitle(getString(R.string.overview))
         audio_player.setURL(exhibitModel?.audio)
         if (exhibitModel?.photos.isNullOrEmpty()) {
             carousel_slider.visibility = View.GONE

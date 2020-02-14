@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_settings.*
-import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
 import kz.digitalart.app.ui.MainActivity
 import kz.digitalart.app.ui.settings.languages.LanguagesBottomSheetCallback
@@ -35,7 +34,7 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener, LanguagesBottom
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).tv_toolbar.text = getString(R.string.nav_item_settings)
+        (activity as MainActivity).setToolbarTitle(getString(R.string.nav_item_settings))
         ll_language.setOnClickListener(this)
         ll_liked.setOnClickListener(this)
         ll_about.setOnClickListener(this)

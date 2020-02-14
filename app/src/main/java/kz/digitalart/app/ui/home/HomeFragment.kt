@@ -12,7 +12,6 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
 import kz.digitalart.app.databinding.FragmentHomeBinding
 import kz.digitalart.app.domain.model.ExhibitModel
@@ -49,7 +48,7 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).tv_toolbar.text = getString(R.string.nav_item_main)
+        (activity as MainActivity).setToolbarTitle(getString(R.string.nav_item_main))
         initView()
 
         if (!isadded) {
