@@ -7,12 +7,12 @@ import kotlinx.coroutines.*
 abstract class BaseViewModel : ViewModel() {
 
     private var viewModelJob = Job()
-    private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     // Do work in IO
     fun <P> doWork(doOnAsyncBlock: suspend CoroutineScope.() -> P) {
         viewModelScope.launch(CoroutineExceptionHandler { _, e ->
-            Log.e("BaseViewModel", "CoroutineExceptionHandler", e)
+            Log.e("Coroutine-BaseViewModel", e.toString())
         }) {
             withContext(Dispatchers.IO) {
                 doOnAsyncBlock.invoke(this)

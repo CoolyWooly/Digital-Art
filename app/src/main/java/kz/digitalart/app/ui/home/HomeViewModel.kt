@@ -19,15 +19,15 @@ class HomeViewModel @Inject constructor(
     val searchString: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
     fun getExhibits(page: Int?, limit: Int?, searchString: String?) {
-        doWork {
-            val exhibits = baseCloudRepository.getExhibits(
-                page,
-                limit,
-                searchString,
-                prefsImpl.getLanguage(),
-                "desc"
-            )
-            exhibitsData.postValue(exhibits)
-        }
+//        doWork {
+//            val exhibits = baseCloudRepository.getExhibits(
+//                page,
+//                limit,
+//                searchString,
+//                prefsImpl.getLanguage(),
+//                "desc"
+//            )
+//            exhibitsData.postValue(exhibits)
+//        }
     }
 }

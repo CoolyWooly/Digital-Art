@@ -1,6 +1,8 @@
 package kz.digitalart.app.ui.about
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.launch
 import kz.digitalart.app.core.BaseViewModel
 import kz.digitalart.app.data.source.cloud.BaseCloudRepository
 import kz.digitalart.app.data.source.db.PrefsImpl
@@ -19,9 +21,14 @@ class AboutViewModel @Inject constructor(
     }
 
     private fun getAbout() {
-        doWork {
-            val exhibits = baseCloudRepository.getAbout(prefsImpl.getLanguage())
-            data.postValue(exhibits)
+        viewModelScope.launch {
+            try {
+                val exhibits = baseCloudRepository.getAbout(prefsImpl.getLanguage())
+                data.postValue(exhibits)
+            } catch (e: Exception) {
+                Log.e("Coroutine-BaseViewModel", e.toString())
+            } finally {
+            }
         }
     }
 }

@@ -7,7 +7,10 @@ import kz.digitalart.app.domain.model.RatingModel
 
 class CloudRepository(private val apIs: ApiService) : BaseCloudRepository {
 
-    override suspend fun getExhibit(id: Int?, lang: String?): ExhibitModel {
+    override suspend fun getExhibit(
+        id: Int?,
+        lang: String?
+    ): ExhibitModel {
         return apIs.getExhibitAsync(id, lang)
     }
 

@@ -30,7 +30,7 @@ interface ApiService {
         @Query("lang") lang: String?
     ): List<ExhibitModel>
 
-    @GET("api/app/info")
+    @GET("info")
     suspend fun getAboutAsync(
         @Query("lang") lang: String?
     ): AboutModel

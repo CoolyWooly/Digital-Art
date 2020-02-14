@@ -1,5 +1,5 @@
 package kz.digitalart.app.core
 
 object Config {
-    var HOST = "http://dcs.panama.kz:8000/"
+    var HOST = "https://todo-golang.herokuapp.com/"
 }
