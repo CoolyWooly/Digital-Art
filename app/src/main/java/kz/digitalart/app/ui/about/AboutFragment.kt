@@ -7,27 +7,20 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
 import kz.digitalart.app.databinding.FragmentAboutBinding
 import kz.digitalart.app.ui.MainActivity
 import javax.inject.Inject
-import android.util.Pair as UtilPair
-
 
 class AboutFragment : DaggerFragment() {
-    private val TAG: String = AboutFragment::class.java.simpleName
-
-    companion object {
-        val FRAGMENT_NAME: String = AboutFragment::class.java.name
-    }
+    private val TAG: String = this::class.java.simpleName
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel: AboutViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(AboutViewModel::class.java)
+        ViewModelProvider(this, viewModelFactory).get(AboutViewModel::class.java)
     }
     var binding: FragmentAboutBinding? = null
 
@@ -46,7 +39,7 @@ class AboutFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         (activity as MainActivity).tv_toolbar.text = getString(R.string.nav_item_about)
         with(viewModel) {
-            data.observe(this@AboutFragment, Observer {
+            data.observe(viewLifecycleOwner, Observer {
                 binding?.about = it
             })
         }

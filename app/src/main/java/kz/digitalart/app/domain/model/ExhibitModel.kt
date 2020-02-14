@@ -3,7 +3,7 @@ package kz.digitalart.app.domain.model
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class Exhibit(
+data class ExhibitModel(
     @SerializedName("id") val id: Int?,
     @SerializedName("museum_id") val museum_id: Int?,
     @SerializedName("rating") val rating: Double?,

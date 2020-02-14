@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -15,22 +14,15 @@ import kz.digitalart.app.ui.MainActivity
 import kz.digitalart.app.ui.settings.languages.LanguagesBottomSheetCallback
 import kz.digitalart.app.ui.settings.languages.LanguagesBottomSheetDialogFragment
 import javax.inject.Inject
-import android.util.Pair as UtilPair
-
 
 class SettingsFragment : DaggerFragment(), View.OnClickListener, LanguagesBottomSheetCallback {
 
-    private val TAG: String = SettingsFragment::class.java.simpleName
-    private val title by lazy(LazyThreadSafetyMode.NONE) { arguments?.getInt("title") ?: 0 }
-
-    companion object {
-        val FRAGMENT_NAME: String = SettingsFragment::class.java.name
-    }
+    private val TAG: String = this::class.java.simpleName
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel: SettingsViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(SettingsViewModel::class.java)
+        ViewModelProvider(this, viewModelFactory).get(SettingsViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -38,8 +30,6 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener, LanguagesBottom
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val asdf = getString(R.string.nav_item_settings)
-        val current = resources.configuration.locale
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
@@ -56,7 +46,7 @@ class SettingsFragment : DaggerFragment(), View.OnClickListener, LanguagesBottom
             R.id.ll_language -> {
                 val bottomSheetFragment =
                     LanguagesBottomSheetDialogFragment(viewModel.prefsImpl, activity, this)
-                bottomSheetFragment.show(fragmentManager!!, bottomSheetFragment.tag)
+                bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
             }
             R.id.ll_liked -> {
                 val navController = Navigation.findNavController(view!!)

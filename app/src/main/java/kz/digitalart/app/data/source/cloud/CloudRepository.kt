@@ -1,12 +1,13 @@
 package kz.digitalart.app.data.source.cloud
 
 import kz.digitalart.app.data.restful.ApiService
-import kz.digitalart.app.domain.model.About
-import kz.digitalart.app.domain.model.Exhibit
-import kz.digitalart.app.domain.model.Rating
+import kz.digitalart.app.domain.model.AboutModel
+import kz.digitalart.app.domain.model.ExhibitModel
+import kz.digitalart.app.domain.model.RatingModel
 
 class CloudRepository(private val apIs: ApiService) : BaseCloudRepository {
-    override suspend fun getExhibit(id: Int?, lang: String?): Exhibit {
+
+    override suspend fun getExhibit(id: Int?, lang: String?): ExhibitModel {
         return apIs.getExhibitAsync(id, lang)
     }
 
@@ -16,7 +17,7 @@ class CloudRepository(private val apIs: ApiService) : BaseCloudRepository {
         search: String?,
         lang: String?,
         by_date: String?
-    ): List<Exhibit> {
+    ): List<ExhibitModel> {
         return apIs.getExhibitsAsync(page, limit, search, lang, by_date)
     }
 
@@ -25,20 +26,20 @@ class CloudRepository(private val apIs: ApiService) : BaseCloudRepository {
         limit: Int?,
         search: String?,
         lang: String?
-    ): List<Exhibit> {
+    ): List<ExhibitModel> {
         return apIs.getPopularAsync(page, limit, search, lang)
     }
 
     override suspend fun getAbout(
         lang: String?
-    ): About {
+    ): AboutModel {
         return apIs.getAboutAsync(lang)
     }
 
     override suspend fun setExhibitRate(
         id: Int?,
         rate: Double?
-    ): Rating {
+    ): RatingModel {
         return apIs.setExhibitRateAsync(id, rate)
     }
 }

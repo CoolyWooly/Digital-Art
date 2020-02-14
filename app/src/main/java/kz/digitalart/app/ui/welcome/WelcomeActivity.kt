@@ -3,7 +3,6 @@ package kz.digitalart.app.ui.welcome
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_welcome.*
 import kz.digitalart.app.R
@@ -19,8 +18,9 @@ class WelcomeActivity : DaggerAppCompatActivity(), OnLangItemClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
     private val viewModel: WelcomeViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(WelcomeViewModel::class.java)
+        ViewModelProvider(this, viewModelFactory).get(WelcomeViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,10 +33,11 @@ class WelcomeActivity : DaggerAppCompatActivity(), OnLangItemClickListener {
         }
 
         btn_start.setOnClickListener {
-            val intent = Intent(this@WelcomeActivity, MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
+
         setButtonLang(viewModel.prefsImpl.getLanguage())
 
         sp_lang.setLanguage(viewModel.prefsImpl.getLanguage())
@@ -45,7 +46,6 @@ class WelcomeActivity : DaggerAppCompatActivity(), OnLangItemClickListener {
     }
 
     override fun langItemClick(lang: String) {
-        updateResources(this, lang)
         updateResources(applicationContext, lang)
         onConfigurationChanged(resources.configuration)
         viewModel.prefsImpl.setLanguage(lang)

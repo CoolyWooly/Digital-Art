@@ -1,17 +1,18 @@
 package kz.digitalart.app.data.source.cloud
 
-import kz.digitalart.app.domain.model.About
-import kz.digitalart.app.domain.model.Exhibit
-import kz.digitalart.app.domain.model.Rating
+import kz.digitalart.app.domain.model.AboutModel
+import kz.digitalart.app.domain.model.ExhibitModel
+import kz.digitalart.app.domain.model.RatingModel
 
 interface BaseCloudRepository {
-    suspend fun getExhibit(id: Int?, lang: String?): Exhibit
 
-    suspend fun getExhibits(page: Int?, limit: Int?, search: String?, lang: String?, by_date: String?): List<Exhibit>
+    suspend fun getExhibit(id: Int?, lang: String?): ExhibitModel
 
-    suspend fun getPopular(page: Int?, limit: Int?, search: String?, lang: String?): List<Exhibit>
+    suspend fun getExhibits(page: Int?, limit: Int?, search: String?, lang: String?, by_date: String?): List<ExhibitModel>
 
-    suspend fun getAbout(lang: String?): About
+    suspend fun getPopular(page: Int?, limit: Int?, search: String?, lang: String?): List<ExhibitModel>
 
-    suspend fun setExhibitRate(id: Int?, rate: Double?): Rating
+    suspend fun getAbout(lang: String?): AboutModel
+
+    suspend fun setExhibitRate(id: Int?, rate: Double?): RatingModel
 }

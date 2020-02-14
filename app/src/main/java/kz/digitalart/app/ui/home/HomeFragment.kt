@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.android.support.DaggerFragment
@@ -16,26 +15,21 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
 import kz.digitalart.app.databinding.FragmentHomeBinding
-import kz.digitalart.app.domain.model.Exhibit
+import kz.digitalart.app.domain.model.ExhibitModel
 import kz.digitalart.app.ui.MainActivity
 import kz.digitalart.app.ui.home.adapter.HomeAdapter
 import kz.digitalart.app.utils.EndlessRecyclerViewScrollListener
 import javax.inject.Inject
-import android.util.Pair as UtilPair
 
 
 class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
 
-    private val TAG: String = HomeFragment::class.java.simpleName
-
-    companion object {
-        val FRAGMENT_NAME: String = HomeFragment::class.java.name
-    }
+    private val TAG: String = this::class.java.simpleName
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel: HomeViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
+        ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
     }
     private val adapter: HomeAdapter by lazy { HomeAdapter(arrayListOf(), this) }
     override fun onCreateView(
@@ -63,7 +57,7 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
 
             isadded = true
             with(viewModel) {
-                searchString.observe(this@HomeFragment, Observer {
+                searchString.observe(viewLifecycleOwner, Observer {
                     if ((it.isNullOrEmpty() || it.length > 1) && searchStr != it) {
                         searchStr = it
                         scrollListener?.resetValues()
@@ -71,13 +65,13 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
                         getExhibits(0, 20, it)
                     }
                 })
-                exhibitsData.observe(this@HomeFragment, Observer {
+                exhibitsData.observe(viewLifecycleOwner, Observer {
                     if (it!!.isNotEmpty()) {
                         adapter.add(it)
                     }
                     swipe.isRefreshing = false
                 })
-                error.observe(this@HomeFragment, Observer {
+                error.observe(viewLifecycleOwner, Observer {
                     progressBar_home.visibility = View.GONE
                     Toast.makeText(context, "${it?.message}", Toast.LENGTH_LONG).show()
                 })
@@ -106,10 +100,10 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
         }
     }
 
-    override fun onExhibitClick(exhibit: Exhibit) {
+    override fun onExhibitClick(exhibitModel: ExhibitModel) {
 
         val action = HomeFragmentDirections.actionNavItemMainToFragmentHomeDetails()
-        action.exhibit = exhibit
+        action.exhibit = exhibitModel
         val navController = Navigation.findNavController(view!!)
         navController.navigate(action)
     }

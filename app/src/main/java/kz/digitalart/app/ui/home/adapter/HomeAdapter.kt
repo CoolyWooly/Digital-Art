@@ -6,11 +6,11 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import kz.digitalart.app.BR.item
 import kz.digitalart.app.databinding.ItemExhibitBinding
-import kz.digitalart.app.domain.model.Exhibit
+import kz.digitalart.app.domain.model.ExhibitModel
 import kz.digitalart.app.ui.DataBindingViewHolder
 
 class HomeAdapter(
-    private var items: ArrayList<Exhibit> = arrayListOf(),
+    private var items: ArrayList<ExhibitModel> = arrayListOf(),
     private var listener: OnExhibitClickListener
 ) : RecyclerView.Adapter<HomeAdapter.SimpleHolder>() {
     override fun getItemCount(): Int = items.size
@@ -25,8 +25,8 @@ class HomeAdapter(
     }
 
     inner class SimpleHolder(dataBinding: ViewDataBinding) :
-        DataBindingViewHolder<Exhibit>(dataBinding) {
-        override fun onBind(t: Exhibit): Unit = with(t) {
+        DataBindingViewHolder<ExhibitModel>(dataBinding) {
+        override fun onBind(t: ExhibitModel): Unit = with(t) {
             dataBinding.setVariable(item, t)
             dataBinding.root.setOnClickListener {
                 listener.onExhibitClick(t)
@@ -34,7 +34,7 @@ class HomeAdapter(
         }
     }
 
-    fun add(list: List<Exhibit>) {
+    fun add(list: List<ExhibitModel>) {
         items.addAll(list)
         notifyDataSetChanged()
     }
@@ -45,6 +45,6 @@ class HomeAdapter(
     }
 
     interface OnExhibitClickListener {
-        fun onExhibitClick(exhibit: Exhibit)
+        fun onExhibitClick(exhibitModel: ExhibitModel)
     }
 }

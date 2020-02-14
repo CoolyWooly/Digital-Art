@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import kz.digitalart.app.core.BaseViewModel
 import kz.digitalart.app.data.source.cloud.BaseCloudRepository
 import kz.digitalart.app.data.source.db.PrefsImpl
-import kz.digitalart.app.domain.model.About
+import kz.digitalart.app.domain.model.AboutModel
 import javax.inject.Inject
 
 class AboutViewModel @Inject constructor(
@@ -12,7 +12,7 @@ class AboutViewModel @Inject constructor(
     private val baseCloudRepository: BaseCloudRepository
 ) : BaseViewModel() {
     private val TAG = this::class.java.simpleName
-    val data: MutableLiveData<About> by lazy { MutableLiveData<About>() }
+    val data: MutableLiveData<AboutModel> by lazy { MutableLiveData<AboutModel>() }
 
     init {
         getAbout()

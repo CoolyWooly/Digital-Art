@@ -37,7 +37,7 @@
         <argument
             android:name="exhibit"
             android:defaultValue="@null"
-            app:argType="kz.digitalart.app.domain.model.Exhibit"
+            app:argType="kz.digitalart.app.domain.model.ExhibitModel"
             app:nullable="true" />
 
     </fragment>

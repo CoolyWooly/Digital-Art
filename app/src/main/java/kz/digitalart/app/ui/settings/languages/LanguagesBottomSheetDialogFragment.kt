@@ -68,9 +68,9 @@ class LanguagesBottomSheetDialogFragment constructor(
     }
 
     private fun deselectAll() {
-        ll_russian.setBackgroundDrawable(null)
-        ll_kazakh.setBackgroundDrawable(null)
-        ll_english.setBackgroundDrawable(null)
+        ll_russian.background = null
+        ll_kazakh.background = null
+        ll_english.background = null
 
         tv_russian.setTextColor(resources.getColor(R.color.color_363636))
         tv_kazakh.setTextColor(resources.getColor(R.color.color_363636))
@@ -86,7 +86,7 @@ class LanguagesBottomSheetDialogFragment constructor(
     }
 
     private fun russianSelected() {
-        ll_russian.setBackgroundDrawable(resources.getDrawable(R.drawable.bottom_sheet_rounded_item))
+        ll_russian.background = resources.getDrawable(R.drawable.bottom_sheet_rounded_item)
         tv_russian.setTextColor(resources.getColor(R.color.colorAccent))
         tv_russian.setTypeface(tv_russian.typeface, Typeface.BOLD)
         iv_russian.visibility = View.VISIBLE
@@ -95,7 +95,7 @@ class LanguagesBottomSheetDialogFragment constructor(
     }
 
     private fun kazakhSelected() {
-        ll_kazakh.setBackgroundDrawable(resources.getDrawable(R.drawable.bottom_sheet_rounded_item))
+        ll_kazakh.background = resources.getDrawable(R.drawable.bottom_sheet_rounded_item)
         tv_kazakh.setTextColor(resources.getColor(R.color.colorAccent))
         tv_kazakh.setTypeface(tv_russian.typeface, Typeface.BOLD)
         iv_kazakh.visibility = View.VISIBLE
@@ -104,7 +104,7 @@ class LanguagesBottomSheetDialogFragment constructor(
     }
 
     private fun englishSelected() {
-        ll_english.setBackgroundDrawable(resources.getDrawable(R.drawable.bottom_sheet_rounded_item))
+        ll_english.background = resources.getDrawable(R.drawable.bottom_sheet_rounded_item)
         tv_english.setTextColor(resources.getColor(R.color.colorAccent))
         tv_english.setTypeface(tv_russian.typeface, Typeface.BOLD)
         iv_english.visibility = View.VISIBLE

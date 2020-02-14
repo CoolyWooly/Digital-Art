@@ -6,7 +6,7 @@
 
         <variable
             name="about"
-            type="kz.digitalart.app.domain.model.About" />
+            type="kz.digitalart.app.domain.model.AboutModel" />
     </data>
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"

@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import kz.digitalart.app.R
-import kz.digitalart.app.domain.model.Exhibit
+import kz.digitalart.app.domain.model.ExhibitModel
 import kz.digitalart.app.ui.custom_views.AudioPlayer
 
 @BindingAdapter("image_url")
@@ -20,8 +20,8 @@ fun loadImage(imageView: ImageView, url: String?) {
 }
 
 @BindingAdapter("image_url")
-fun loadImage(imageView: ImageView, exhibit: Exhibit) {
-    if (exhibit.photos.isNullOrEmpty()) {
+fun loadImage(imageView: ImageView, exhibitModel: ExhibitModel) {
+    if (exhibitModel.photos.isNullOrEmpty()) {
         Glide
             .with(imageView.context)
             .load(R.drawable.ic_image)
@@ -30,7 +30,7 @@ fun loadImage(imageView: ImageView, exhibit: Exhibit) {
     }
     Glide
         .with(imageView.context)
-        .load(exhibit.photos[0])
+        .load(exhibitModel.photos[0])
         .placeholder(R.drawable.ic_image)
         .into(imageView)
 }

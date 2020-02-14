@@ -12,6 +12,7 @@ import kz.digitalart.app.ui.settings.languages.LanguagesBottomSheetDialogFragmen
 
 @Module
 abstract class MainActivityProviders {
+
     @ContributesAndroidInjector
     abstract fun provideQrFragment(): QrFragment
 

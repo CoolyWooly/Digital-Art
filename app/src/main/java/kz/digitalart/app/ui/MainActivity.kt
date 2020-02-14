@@ -1,6 +1,5 @@
 package kz.digitalart.app.ui
 
-
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.Navigation
@@ -10,8 +9,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
 
-
 class MainActivity : DaggerAppCompatActivity() {
+
     private val TAG = this::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +28,5 @@ class MainActivity : DaggerAppCompatActivity() {
         NavigationUI.setupWithNavController(nav_view, navController)
     }
 
-    override fun onSupportNavigateUp() =
-        Navigation.findNavController(this, R.id.container).navigateUp()
+    override fun onSupportNavigateUp() = Navigation.findNavController(this, R.id.container).navigateUp()
 }

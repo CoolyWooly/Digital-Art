@@ -20,7 +20,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_qr.*
@@ -32,23 +31,18 @@ import me.dm7.barcodescanner.core.ViewFinderView
 import me.dm7.barcodescanner.zbar.Result
 import me.dm7.barcodescanner.zbar.ZBarScannerView
 import javax.inject.Inject
-import android.util.Pair as UtilPair
 
 
 class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
 
-    private val TAG: String = QrFragment::class.java.simpleName
+    private val TAG: String = this::class.java.simpleName
     private var mScannerView: ZBarScannerView? = null
     private val CAMERA_REQUEST_CODE = 0
-
-    companion object {
-        val FRAGMENT_NAME: String = QrFragment::class.java.name
-    }
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel: QrViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(QrViewModel::class.java)
+        ViewModelProvider(this, viewModelFactory).get(QrViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -74,7 +68,7 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
         }
         content_frame.addView(mScannerView)
         with(viewModel) {
-            exhibitsData.observe(this@QrFragment, Observer {
+            exhibitsData.observe(viewLifecycleOwner, Observer {
                 val action = QrFragmentDirections.actionFragmentQrToFragmentHomeDetails()
                 action.exhibit = it
                 val navController = Navigation.findNavController(view)
@@ -131,7 +125,7 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
     }
 
     private class CustomViewFinderView : ViewFinderView {
-        val PAINT = Paint()
+        val paint = Paint()
 
         constructor(context: Context) : super(context) {
             init()
@@ -142,13 +136,13 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
         }
 
         private fun init() {
-            PAINT.color = Color.WHITE
-            PAINT.isAntiAlias = true
+            paint.color = Color.WHITE
+            paint.isAntiAlias = true
             val textPixelSize = TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_SP,
                 TRADE_MARK_TEXT_SIZE_SP.toFloat(), resources.displayMetrics
             )
-            PAINT.textSize = textPixelSize
+            paint.textSize = textPixelSize
             setSquareViewFinder(true)
         }
 
@@ -162,13 +156,13 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
             val tradeMarkTop: Float
             val tradeMarkLeft: Float
             if (framingRect != null) {
-                tradeMarkTop = framingRect.bottom.toFloat() + PAINT.textSize + 10f
+                tradeMarkTop = framingRect.bottom.toFloat() + paint.textSize + 10f
                 tradeMarkLeft = framingRect.left.toFloat()
             } else {
                 tradeMarkTop = 10f
-                tradeMarkLeft = canvas.height.toFloat() - PAINT.textSize - 10f
+                tradeMarkLeft = canvas.height.toFloat() - paint.textSize - 10f
             }
-            canvas.drawText(TRADE_MARK_TEXT, tradeMarkLeft, tradeMarkTop, PAINT)
+            canvas.drawText(TRADE_MARK_TEXT, tradeMarkLeft, tradeMarkTop, paint)
         }
 
         companion object {

@@ -8,19 +8,15 @@ import kotlinx.android.synthetic.main.view_language_spinner.view.*
 import kz.digitalart.app.R
 
 
-class LanguagesSpinner : ConstraintLayout {
+class LanguagesSpinner @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     var onLangItemClickListener: OnLangItemClickListener? = null
     private var droppedDown = false
     private val data = mutableListOf("RU", "KAZ", "ENG")
-
-    @JvmOverloads
-    constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
-    )
-            : super(context, attrs, defStyleAttr)
 
     init {
         LayoutInflater.from(context).inflate(R.layout.view_language_spinner, this)
@@ -62,7 +58,7 @@ class LanguagesSpinner : ConstraintLayout {
         tv_second_choice.text = data[2]
     }
 
-    fun init() {
+    private fun init() {
         ll_dropdown.animate().translationY(-400F).setDuration(0).start()
     }
 

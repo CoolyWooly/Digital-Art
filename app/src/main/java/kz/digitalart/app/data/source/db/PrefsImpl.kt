@@ -2,7 +2,7 @@ package kz.digitalart.app.data.source.db
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import javax.inject.Inject
 
 class PrefsImpl @Inject constructor(appContext: Context) : Prefs {
@@ -16,11 +16,11 @@ class PrefsImpl @Inject constructor(appContext: Context) : Prefs {
     override fun setLanguage(lang: String) {
         val editor = prefs.edit()
         editor.putString(LANGUAGE, lang)
-        editor.commit()
+        editor.apply()
     }
 
     override fun getLanguage(): String {
-        return prefs.getString(LANGUAGE, "ru")
+        return prefs.getString(LANGUAGE, "ru") ?: "ru"
     }
 
     override fun setRatings(id: Int) {
@@ -28,10 +28,10 @@ class PrefsImpl @Inject constructor(appContext: Context) : Prefs {
         var def = prefs.getString(RATINGS, "")
         def += " $id"
         editor.putString(RATINGS, def)
-        editor.commit()
+        editor.apply()
     }
 
     override fun getRatings(): String {
-        return prefs.getString(RATINGS, "")
+        return prefs.getString(RATINGS, "") ?: ""
     }
 }

@@ -7,33 +7,27 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
-import kz.digitalart.app.domain.model.Exhibit
+import kz.digitalart.app.domain.model.ExhibitModel
 import kz.digitalart.app.ui.MainActivity
 import kz.digitalart.app.ui.liked.adapter.LikedAdapter
 import kz.digitalart.app.utils.EndlessRecyclerViewScrollListener
 import javax.inject.Inject
-import android.util.Pair as UtilPair
 
 
 class LikedFragment : DaggerFragment(), LikedAdapter.OnExhibitClickListener {
 
-    private val TAG: String = LikedFragment::class.java.simpleName
-
-    companion object {
-        val FRAGMENT_NAME: String = LikedFragment::class.java.name
-    }
+    private val TAG: String = this::class.java.simpleName
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel: LikedViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(LikedViewModel::class.java)
+        ViewModelProvider(this, viewModelFactory).get(LikedViewModel::class.java)
     }
     private val adapter: LikedAdapter by lazy { LikedAdapter(arrayListOf(), this) }
 
@@ -50,12 +44,12 @@ class LikedFragment : DaggerFragment(), LikedAdapter.OnExhibitClickListener {
         (activity as MainActivity).tv_toolbar.text = getString(R.string.popular)
         initView()
         with(viewModel) {
-            exhibitsData.observe(this@LikedFragment, Observer {
-                if (it!!.isNotEmpty()) {
+            exhibitsData.observe(viewLifecycleOwner, Observer {
+                if (it.isNotEmpty()) {
                     adapter.add(it)
                 }
             })
-            error.observe(this@LikedFragment, Observer {
+            error.observe(viewLifecycleOwner, Observer {
                 progressBar_home.visibility = View.GONE
                 Toast.makeText(context, "${it?.message}", Toast.LENGTH_LONG).show()
             })
@@ -75,9 +69,9 @@ class LikedFragment : DaggerFragment(), LikedAdapter.OnExhibitClickListener {
         progressBar_home.visibility = View.GONE
     }
 
-    override fun onExhibitClick(exhibit: Exhibit) {
+    override fun onExhibitClick(exhibitModel: ExhibitModel) {
         val action = LikedFragmentDirections.actionFragmentLikedToFragmentLikedDetails()
-        action.exhibit = exhibit
+        action.exhibit = exhibitModel
         val navController = Navigation.findNavController(view!!)
         navController.navigate(action)
     }

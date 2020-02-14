@@ -13,7 +13,13 @@ import kz.digitalart.app.di.module.PrefsModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AndroidSupportInjectionModule::class, NetworkModule::class, ActivityBuilder::class, ContextModule::class, PrefsModule::class])
+@Component(modules = [
+    AndroidSupportInjectionModule::class,
+    NetworkModule::class,
+    ActivityBuilder::class,
+    ContextModule::class,
+    PrefsModule::class
+])
 interface CoreComponent : AndroidInjector<App> {
 
     @Component.Builder
@@ -23,6 +29,4 @@ interface CoreComponent : AndroidInjector<App> {
 
         fun build(): CoreComponent
     }
-
-
 }

@@ -15,6 +15,7 @@ import kz.digitalart.app.ui.welcome.WelcomeViewModel
 
 @Module
 abstract class AppViewModelBuilder {
+
     @Binds
     @IntoMap
     @ViewModelKey(QrViewModel::class)

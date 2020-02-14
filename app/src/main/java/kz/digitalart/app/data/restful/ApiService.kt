@@ -1,8 +1,8 @@
 package kz.digitalart.app.data.restful
 
-import kz.digitalart.app.domain.model.About
-import kz.digitalart.app.domain.model.Exhibit
-import kz.digitalart.app.domain.model.Rating
+import kz.digitalart.app.domain.model.AboutModel
+import kz.digitalart.app.domain.model.ExhibitModel
+import kz.digitalart.app.domain.model.RatingModel
 import retrofit2.http.*
 
 interface ApiService {
@@ -11,7 +11,7 @@ interface ApiService {
     suspend fun getExhibitAsync(
         @Path("id") id: Int?,
         @Query("lang") lang: String?
-    ): Exhibit
+    ): ExhibitModel
 
     @GET("api/exhibits")
     suspend fun getExhibitsAsync(
@@ -20,7 +20,7 @@ interface ApiService {
         @Query("search") search: String?,
         @Query("lang") lang: String?,
         @Query("by_date") by_date: String?
-    ): List<Exhibit>
+    ): List<ExhibitModel>
 
     @GET("api/exhibits/popular")
     suspend fun getPopularAsync(
@@ -28,17 +28,17 @@ interface ApiService {
         @Query("limit") limit: Int?,
         @Query("search") search: String?,
         @Query("lang") lang: String?
-    ): List<Exhibit>
+    ): List<ExhibitModel>
 
     @GET("api/app/info")
     suspend fun getAboutAsync(
         @Query("lang") lang: String?
-    ): About
+    ): AboutModel
 
     @FormUrlEncoded
     @POST("api/exhibit/rate")
     suspend fun setExhibitRateAsync(
         @Field("id") id: Int?,
         @Field("rate") rate: Double?
-    ): Rating
+    ): RatingModel
 }
