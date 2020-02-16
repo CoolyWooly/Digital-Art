@@ -31,6 +31,8 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
         ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
     }
     private val adapter: HomeAdapter by lazy { HomeAdapter(arrayListOf(), this) }
+    private lateinit var scrollListener: EndlessRecyclerViewScrollListener
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,42 +45,30 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
         return binding.root
     }
 
-    private var searchStr = ""
-    private var isadded = false
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).setToolbarTitle(getString(R.string.nav_item_main))
         initView()
-
-        if (!isadded) {
-            viewModel.getExhibits(0, 20, null)
-
-            isadded = true
-            with(viewModel) {
-                searchString.observe(viewLifecycleOwner, Observer {
-                    if ((it.isNullOrEmpty() || it.length > 1) && searchStr != it) {
-                        searchStr = it
-                        scrollListener?.resetValues()
-                        adapter.clear()
-                        getExhibits(0, 20, it)
-                    }
-                })
-                exhibitsData.observe(viewLifecycleOwner, Observer {
-                    if (it!!.isNotEmpty()) {
-                        adapter.add(it)
-                    }
-                    swipe.isRefreshing = false
-                })
-                error.observe(viewLifecycleOwner, Observer {
-                    progressBar_home.visibility = View.GONE
-                    Toast.makeText(context, "${it?.message}", Toast.LENGTH_LONG).show()
-                })
-            }
+        with(viewModel) {
+            searchString.observe(viewLifecycleOwner, Observer {
+                scrollListener.resetValues()
+                adapter.clear()
+                getExhibits(1, 20, it)
+            })
+            exhibitsData.observe(viewLifecycleOwner, Observer {
+                if (it.isNotEmpty()) {
+                    adapter.add(it)
+                }
+                swipe.isRefreshing = false
+            })
+            error.observe(viewLifecycleOwner, Observer {
+                progressBar_home.visibility = View.GONE
+                Toast.makeText(context, "${it?.message}", Toast.LENGTH_LONG).show()
+            })
         }
+
     }
 
-    private var scrollListener: EndlessRecyclerViewScrollListener? = null
 
     private fun initView() {
         val mLayoutManager = GridLayoutManager(context, 2)
@@ -89,18 +79,17 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
                 viewModel.getExhibits(page, 20, viewModel.searchString.value)
             }
         }
-        rv_main_home.addOnScrollListener(scrollListener as EndlessRecyclerViewScrollListener)
+        rv_main_home.addOnScrollListener(scrollListener)
         progressBar_home.visibility = View.GONE
 
         swipe.setOnRefreshListener {
-            scrollListener?.resetValues()
+            scrollListener.resetValues()
             adapter.clear()
-            viewModel.getExhibits(0, 20, searchStr)
+            viewModel.getExhibits(1, 20, viewModel.searchString.value)
         }
     }
 
     override fun onExhibitClick(exhibitModel: ExhibitModel) {
-
         val action = HomeFragmentDirections.actionNavItemMainToFragmentHomeDetails()
         action.exhibit = exhibitModel
         val navController = Navigation.findNavController(view!!)

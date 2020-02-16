@@ -21,18 +21,18 @@ fun loadImage(imageView: ImageView, url: String?) {
 
 @BindingAdapter("image_url")
 fun loadImage(imageView: ImageView, exhibitModel: ExhibitModel) {
-    if (exhibitModel.photos.isNullOrEmpty()) {
+    if (exhibitModel.images.isNullOrEmpty()) {
         Glide
             .with(imageView.context)
             .load(R.drawable.ic_image)
             .into(imageView)
-        return
+    } else {
+        Glide
+            .with(imageView.context)
+            .load(exhibitModel.images[0].url)
+            .placeholder(R.drawable.ic_image)
+            .into(imageView)
     }
-    Glide
-        .with(imageView.context)
-        .load(exhibitModel.photos[0])
-        .placeholder(R.drawable.ic_image)
-        .into(imageView)
 }
 
 @BindingAdapter("set_url")

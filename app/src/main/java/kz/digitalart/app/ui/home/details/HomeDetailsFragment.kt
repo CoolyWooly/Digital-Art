@@ -46,7 +46,7 @@ class HomeDetailsFragment : DaggerFragment() {
         )
         exhibitModel = arguments?.getSerializable("exhibit") as ExhibitModel
         binding.item = exhibitModel
-        Log.e(TAG, exhibitModel?.id.toString())
+        Log.e(TAG, exhibitModel?.id_exhibit.toString())
         return binding.root
     }
 
@@ -54,13 +54,14 @@ class HomeDetailsFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).setToolbarTitle(getString(R.string.overview))
         audio_player.setURL(exhibitModel?.audio)
-        if (exhibitModel?.photos.isNullOrEmpty()) {
+        if (exhibitModel?.images.isNullOrEmpty()) {
             carousel_slider.visibility = View.GONE
         } else {
-            carousel_slider.setItems(exhibitModel?.photos!!)
+            val strList = exhibitModel!!.images!!.map { it.url!! }
+            carousel_slider.setItems(strList)
         }
         tv_rate.setOnClickListener {
-            if (!viewModel.prefsImpl.getRatings().contains(exhibitModel?.id.toString())) {
+            if (!viewModel.prefsImpl.getRatings().contains(exhibitModel?.id_exhibit.toString())) {
                 showRateAlertDialog()
             }
         }
@@ -83,8 +84,8 @@ class HomeDetailsFragment : DaggerFragment() {
             if (ratingBar.rating == 0f) {
                 Toast.makeText(context, R.string.select_rating, Toast.LENGTH_LONG).show()
             } else {
-                viewModel.prefsImpl.setRatings(exhibitModel?.id!!)
-                viewModel.setExhibitRate(exhibitModel?.id, ratingBar.rating.toDouble())
+                viewModel.prefsImpl.setRatings(exhibitModel?.id_exhibit!!)
+                viewModel.setExhibitRate(exhibitModel?.id_exhibit, ratingBar.rating.toDouble())
                 dialog.dismiss()
             }
         }

@@ -7,7 +7,7 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("api/exhibit/{id}")
+    @GET("api/exhibits/{id}")
     suspend fun getExhibitAsync(
         @Path("id") id: Int?,
         @Query("lang") lang: String?
@@ -30,7 +30,7 @@ interface ApiService {
         @Query("lang") lang: String?
     ): List<ExhibitModel>
 
-    @GET("info")
+    @GET("api/info")
     suspend fun getAboutAsync(
         @Query("lang") lang: String?
     ): AboutModel
