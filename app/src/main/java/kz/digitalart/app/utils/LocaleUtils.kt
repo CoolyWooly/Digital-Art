@@ -2,18 +2,25 @@ package kz.digitalart.app.utils
 
 import android.content.Context
 import android.content.res.Configuration
-import android.content.res.Resources
+import kz.digitalart.app.data.db.PrefsImpl
 import java.util.*
 
-fun updateResources(context: Context?, language: String) {
-    val resources = context?.resources
-    val dm = resources?.displayMetrics
-    val configuration = resources?.configuration
-    configuration?.setLocale(Locale(language.toLowerCase(Locale.getDefault())))
-    resources?.updateConfiguration(configuration, dm)
+fun updateResources(context: Context?, language: String) : Context? {
 
-    val configuration2 = Configuration(Resources.getSystem().configuration)
-    configuration2.setLocale(Locale(language.toLowerCase(Locale.getDefault())))
-    Locale.setDefault(Locale(language.toLowerCase(Locale.getDefault())))
-    Resources.getSystem().updateConfiguration(configuration2, dm)
+    val locale = Locale(language)
+    Locale.setDefault(locale)
+    val res = context?.resources
+    val config = Configuration(res?.configuration)
+    config.setLocale(locale)
+    return context?.createConfigurationContext(config)
+}
+
+fun setLocale(context: Context?) : Context? {
+    val prefsImpl = context?.let { PrefsImpl(it) }
+    val lang = prefsImpl?.getLanguage()
+    return if (lang.isNullOrEmpty()) {
+        context
+    } else {
+        updateResources(context, prefsImpl.getLanguage())
+    }
 }

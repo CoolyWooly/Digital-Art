@@ -12,12 +12,12 @@
         android:rotation="-90">
         <path
             android:name="play1"
-            android:fillColor="#E91E63"
+            android:fillColor="@color/colorAccent"
             android:pathData="M 5 6 L 5 10 L 19 10 L 19 6 Z" />
 
         <path
             android:name="play2"
-            android:fillColor="#E91E63"
+            android:fillColor="@color/colorAccent"
             android:pathData="M 5 14 L 5 18 L 19 18 L 19 14 Z" />
     </group>
 </vector>

@@ -1,4 +1,4 @@
-package kz.digitalart.app.data.source.db
+package kz.digitalart.app.data.db
 
 import android.content.Context
 import android.content.SharedPreferences

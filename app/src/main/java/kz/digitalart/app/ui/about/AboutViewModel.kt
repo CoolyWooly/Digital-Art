@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import kz.digitalart.app.core.BaseViewModel
 import kz.digitalart.app.data.cloud.ResultWrapper
 import kz.digitalart.app.data.cloud.repository.BaseCloudRepository
-import kz.digitalart.app.data.source.db.PrefsImpl
+import kz.digitalart.app.data.db.PrefsImpl
 import kz.digitalart.app.domain.model.AboutModel
 import javax.inject.Inject
 

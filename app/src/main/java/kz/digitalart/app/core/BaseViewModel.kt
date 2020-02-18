@@ -2,12 +2,10 @@ package kz.digitalart.app.core
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
 
 abstract class BaseViewModel : ViewModel() {
-
-    private var viewModelJob = Job()
-    val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     // Do work in IO
     fun <P> launchIO(doOnAsyncBlock: suspend CoroutineScope.() -> P) {
@@ -18,10 +16,5 @@ abstract class BaseViewModel : ViewModel() {
                 doOnAsyncBlock.invoke(this)
             }
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
     }
 }

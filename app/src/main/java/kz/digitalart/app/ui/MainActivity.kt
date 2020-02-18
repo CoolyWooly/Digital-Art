@@ -1,5 +1,6 @@
 package kz.digitalart.app.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -7,6 +8,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import kz.digitalart.app.R
+import kz.digitalart.app.utils.setLocale
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -31,4 +33,8 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     override fun onSupportNavigateUp() = Navigation.findNavController(this, R.id.container).navigateUp()
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(setLocale(newBase))
+    }
 }

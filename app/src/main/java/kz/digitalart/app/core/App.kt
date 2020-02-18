@@ -1,10 +1,12 @@
 package kz.digitalart.app.core
 
 import android.content.Context
+import android.content.res.Configuration
 import androidx.multidex.MultiDex
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import kz.digitalart.app.di.component.DaggerCoreComponent
+import kz.digitalart.app.utils.setLocale
 
 class App : DaggerApplication() {
 
@@ -25,7 +27,12 @@ class App : DaggerApplication() {
     }
 
     override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
+        super.attachBaseContext(setLocale(base))
         MultiDex.install(this)
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        setLocale(this)
     }
 }

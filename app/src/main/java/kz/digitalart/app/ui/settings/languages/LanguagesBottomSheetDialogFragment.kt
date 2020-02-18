@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.view_lang_bottom_sheet.*
 import kz.digitalart.app.R
-import kz.digitalart.app.data.source.db.PrefsImpl
+import kz.digitalart.app.data.db.PrefsImpl
 import kz.digitalart.app.utils.updateResources
 
 class LanguagesBottomSheetDialogFragment constructor(
@@ -115,6 +115,6 @@ class LanguagesBottomSheetDialogFragment constructor(
     private fun changeLang(lang: String) {
         prefsImpl.setLanguage(lang)
         updateResources(mContext, lang)
-        updateResources(mContext?.applicationContext, lang)
+//        updateResources(mContext?.applicationContext, lang)
     }
 }
