@@ -74,6 +74,9 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
                 navController.navigate(action)
                 mScannerView?.stopCamera()
             })
+            error.observe(viewLifecycleOwner, Observer {
+                Toast.makeText(context, "${it?.error}", Toast.LENGTH_LONG).show()
+            })
         }
     }
 

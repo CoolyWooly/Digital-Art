@@ -4,9 +4,9 @@ import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import kz.digitalart.app.core.Config
-import kz.digitalart.app.data.restful.ApiService
-import kz.digitalart.app.data.source.cloud.BaseCloudRepository
-import kz.digitalart.app.data.source.cloud.CloudRepository
+import kz.digitalart.app.data.cloud.repository.BaseCloudRepository
+import kz.digitalart.app.data.cloud.repository.CloudRepository
+import kz.digitalart.app.data.cloud.rest.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -64,7 +64,9 @@ class NetworkModule {
 
     @Provides
     fun provideCloudRepository(apIs: ApiService): BaseCloudRepository {
-        return CloudRepository(apIs)
+        return CloudRepository(
+            apIs
+        )
     }
 
 

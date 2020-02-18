@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import kz.digitalart.app.R
 import kz.digitalart.app.domain.model.ExhibitModel
@@ -49,4 +50,9 @@ fun setHtml(textView: TextView, text: String?) {
     if (text != null) {
         textView.text = Html.fromHtml(text)
     }
+}
+
+@BindingAdapter("is_refreshing")
+fun isRefreshing(swipeRefreshLayout: SwipeRefreshLayout, boolean: Boolean) {
+    swipeRefreshLayout.isRefreshing = boolean
 }

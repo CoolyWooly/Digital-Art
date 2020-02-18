@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -28,11 +29,10 @@ class AboutFragment : DaggerFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentAboutBinding>(
+        binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_about, container, false
         )
-        this.binding = binding
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,6 +40,9 @@ class AboutFragment : DaggerFragment() {
         with(viewModel) {
             data.observe(viewLifecycleOwner, Observer {
                 binding?.about = it
+            })
+            error.observe(viewLifecycleOwner, Observer {
+                Toast.makeText(context, "${it.error}", Toast.LENGTH_LONG).show()
             })
         }
     }

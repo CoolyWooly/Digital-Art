@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg">
+    android:background="@color/white">
 
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -16,7 +15,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="26dp">
@@ -27,7 +25,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/language_selection"
-                android:textColor="@color/color_363636" />
+                android:textColor="@color/color_363636"
+                android:textSize="16sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -49,7 +48,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="26dp">
@@ -60,7 +58,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/popular"
-                android:textColor="@color/color_363636" />
+                android:textColor="@color/color_363636"
+                android:textSize="16sp" />
 
 
             <ImageView
@@ -83,7 +82,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="26dp">
@@ -94,7 +92,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/about_app"
-                android:textColor="@color/color_363636" />
+                android:textColor="@color/color_363636"
+                android:textSize="16sp" />
 
             <ImageView
                 android:layout_width="wrap_content"

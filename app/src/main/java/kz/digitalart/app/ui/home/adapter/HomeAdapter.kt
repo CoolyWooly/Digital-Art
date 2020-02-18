@@ -13,6 +13,7 @@ class HomeAdapter(
     private var items: ArrayList<ExhibitModel> = arrayListOf(),
     private var listener: OnExhibitClickListener
 ) : RecyclerView.Adapter<HomeAdapter.SimpleHolder>() {
+
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: SimpleHolder, position: Int) {

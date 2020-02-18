@@ -1,13 +1,11 @@
 package kz.digitalart.app.ui.home
 
 import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.launch
 import kz.digitalart.app.core.BaseViewModel
-import kz.digitalart.app.data.source.cloud.BaseCloudRepository
+import kz.digitalart.app.data.cloud.ResultWrapper
+import kz.digitalart.app.data.cloud.repository.BaseCloudRepository
 import kz.digitalart.app.data.source.db.PrefsImpl
 import kz.digitalart.app.domain.model.ExhibitModel
-import kz.digitalart.app.domain.model.response.ErrorModel
-import kz.digitalart.app.domain.model.response.ErrorStatus
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
@@ -16,8 +14,9 @@ class HomeViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val TAG = this::class.java.simpleName
+    val isRefreshing: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>(false) }
     val exhibitsData: MutableLiveData<List<ExhibitModel>> by lazy { MutableLiveData<List<ExhibitModel>>() }
-    val error: MutableLiveData<ErrorModel> by lazy { MutableLiveData<ErrorModel>() }
+    val error: MutableLiveData<ResultWrapper.Error> by lazy { MutableLiveData<ResultWrapper.Error>() }
     val searchString: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
     init {
@@ -25,20 +24,20 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getExhibits(page: Int, limit: Int, searchString: String? = null) {
-        viewModelScope.launch {
-            try {
-                val exhibits = baseCloudRepository.getExhibits(
-                    page,
-                    limit,
-                    searchString,
-                    prefsImpl.getLanguage(),
-                    "desc"
-                )
-                exhibitsData.postValue(exhibits)
-            } catch (e: Exception) {
-                val errorModel = ErrorModel(e.localizedMessage, 400, ErrorStatus.BAD_RESPONSE)
-                error.postValue(errorModel)
+        launchIO {
+            isRefreshing.postValue(true)
+            val exhibits = baseCloudRepository.getExhibits(
+                page,
+                limit,
+                searchString,
+                prefsImpl.getLanguage(),
+                "desc"
+            )
+            when (exhibits) {
+                is ResultWrapper.Error -> error.postValue(exhibits)
+                is ResultWrapper.Success -> exhibitsData.postValue(exhibits.value)
             }
+            isRefreshing.postValue(false)
         }
     }
 }

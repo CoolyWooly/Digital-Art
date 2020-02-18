@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kz.digitalart.app.R
 import kz.digitalart.app.databinding.FragmentHomeBinding
 import kz.digitalart.app.domain.model.ExhibitModel
+import kz.digitalart.app.domain.model.response.ErrorStatus
 import kz.digitalart.app.ui.MainActivity
 import kz.digitalart.app.ui.home.adapter.HomeAdapter
 import kz.digitalart.app.utils.EndlessRecyclerViewScrollListener
@@ -41,6 +42,7 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
         val binding = DataBindingUtil.inflate<FragmentHomeBinding>(
             inflater, R.layout.fragment_home, container, false
         )
+        binding.lifecycleOwner = this
         binding.viewModel = viewModel
         return binding.root
     }
@@ -56,17 +58,24 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
                 getExhibits(1, 20, it)
             })
             exhibitsData.observe(viewLifecycleOwner, Observer {
+                ll_connection_error.visibility = View.GONE
                 if (it.isNotEmpty()) {
                     adapter.add(it)
                 }
-                swipe.isRefreshing = false
             })
             error.observe(viewLifecycleOwner, Observer {
-                progressBar_home.visibility = View.GONE
-                Toast.makeText(context, "${it?.message}", Toast.LENGTH_LONG).show()
+                if (listOf(ErrorStatus.NO_CONNECTION, ErrorStatus.TIMEOUT).contains(it.status) &&
+                    adapter.itemCount == 0
+                ) {
+                    ll_connection_error.visibility = View.VISIBLE
+                }
+                Toast.makeText(context, "${it?.error}", Toast.LENGTH_LONG).show()
             })
         }
 
+        tv_retry.setOnClickListener {
+            viewModel.getExhibits(page = 1, limit = 20)
+        }
     }
 
 
@@ -80,8 +89,6 @@ class HomeFragment : DaggerFragment(), HomeAdapter.OnExhibitClickListener {
             }
         }
         rv_main_home.addOnScrollListener(scrollListener)
-        progressBar_home.visibility = View.GONE
-
         swipe.setOnRefreshListener {
             scrollListener.resetValues()
             adapter.clear()

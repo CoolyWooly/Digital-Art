@@ -69,6 +69,9 @@ class HomeDetailsFragment : DaggerFragment() {
             ratingModelData.observe(viewLifecycleOwner, Observer {
                 tv_rate.text = it.rating?.toString()
             })
+            error.observe(viewLifecycleOwner, Observer {
+                Toast.makeText(context, "${it?.error}", Toast.LENGTH_LONG).show()
+            })
         }
     }
 

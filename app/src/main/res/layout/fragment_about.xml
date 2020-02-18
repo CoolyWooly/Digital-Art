@@ -12,29 +12,17 @@
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg">
+        android:background="@color/white">
 
-        <RelativeLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_margin="26dp"
+            android:textColor="@color/color_363636"
+            android:textSize="16sp"
+            app:set_html="@{about.info}"
+            tools:text="about_description" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/color_C0C0C0" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:textColor="@color/color_363636"
-                android:textSize="16sp"
-                app:set_html="@{about.info}"
-                tools:text="@string/about_description" />
-
-        </RelativeLayout>
     </ScrollView>
 </layout>
 

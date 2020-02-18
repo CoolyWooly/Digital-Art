@@ -49,8 +49,7 @@ class LikedFragment : DaggerFragment(), LikedAdapter.OnExhibitClickListener {
                 }
             })
             error.observe(viewLifecycleOwner, Observer {
-                progressBar_home.visibility = View.GONE
-                Toast.makeText(context, "${it?.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "${it?.error}", Toast.LENGTH_LONG).show()
             })
         }
     }
@@ -65,7 +64,6 @@ class LikedFragment : DaggerFragment(), LikedAdapter.OnExhibitClickListener {
                 viewModel.getExhibits(page, 20, null)
             }
         })
-        progressBar_home.visibility = View.GONE
     }
 
     override fun onExhibitClick(exhibitModel: ExhibitModel) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -11,7 +11,7 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg">
+        android:background="@color/white">
 
         <View
             android:layout_width="0dp"
@@ -51,43 +51,43 @@
             android:id="@+id/swipe"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/tv_exhibits">
+            android:layout_below="@+id/tv_exhibits"
+            app:is_refreshing="@{viewModel.isRefreshing}">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_main_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_exhibits"
-                android:background="@color/bg"
+                android:background="@color/white"
                 android:padding="8dp" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-
         <LinearLayout
-            android:id="@+id/progressBar_home"
+            android:id="@+id/ll_connection_error"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_below="@+id/et_search"
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="gone">
 
-            <ProgressBar
-                android:id="@+id/loading"
+            <TextView
+                android:id="@+id/tv_connection_error"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="Ошибка при загрузке данных" />
 
             <TextView
-                android:layout_width="fill_parent"
+                android:id="@+id/tv_retry"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="@string/loading"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:padding="12dp"
+                android:text="Повторить"
+                android:textColor="@color/color_3062EF" />
         </LinearLayout>
+
     </RelativeLayout>
 </layout>
 

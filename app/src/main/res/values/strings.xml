@@ -26,4 +26,6 @@
     <string name="select_rating">Выберите оценку</string>
     <string name="camera">Камера</string>
     <string name="camera_permission">Для сканирования QR кода требуется включить разрешение на доступ к камере</string>
+    <string name="socket_timeout_exception">Превышено время ожидания сервера</string>
+    <string name="no_internet_connection">Нет интернет соединения</string>
 </resources>

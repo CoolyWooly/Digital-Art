@@ -10,7 +10,7 @@ abstract class BaseViewModel : ViewModel() {
     val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     // Do work in IO
-    fun <P> doWork(doOnAsyncBlock: suspend CoroutineScope.() -> P) {
+    fun <P> launchIO(doOnAsyncBlock: suspend CoroutineScope.() -> P) {
         viewModelScope.launch(CoroutineExceptionHandler { _, e ->
             Log.e("Coroutine-BaseViewModel", e.toString())
         }) {

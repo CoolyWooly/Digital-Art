@@ -22,7 +22,7 @@
 
         <activity
             android:name="kz.digitalart.app.ui.welcome.WelcomeActivity"
-            android:launchMode= "singleInstance">
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +32,12 @@
 
         <activity
             android:name="kz.digitalart.app.ui.MainActivity"
-            android:launchMode= "singleInstance"/>
+            android:launchMode="singleInstance" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
     </application>
 
 </manifest>
