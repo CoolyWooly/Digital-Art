@@ -61,9 +61,9 @@ class HomeDetailsFragment : DaggerFragment() {
             carousel_slider.setItems(strList)
         }
         tv_rate.setOnClickListener {
-            if (!viewModel.prefsImpl.getRatings().contains(exhibitModel?.id_exhibit.toString())) {
+//            if (!viewModel.prefsImpl.getRatings().contains(exhibitModel?.id_exhibit.toString())) {
                 showRateAlertDialog()
-            }
+//            }
         }
         with(viewModel) {
             ratingModelData.observe(viewLifecycleOwner, Observer {

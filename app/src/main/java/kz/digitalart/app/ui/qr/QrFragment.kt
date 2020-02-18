@@ -99,7 +99,7 @@ class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
     }
 
     override fun handleResult(rawResult: Result) {
-        if (rawResult.contents.isDigitsOnly()) {
+        if (rawResult.contents.isDigitsOnly() && rawResult.contents.toIntOrNull() != null) {
             viewModel.getExhibit(rawResult.contents.toInt())
         } else {
             Toast.makeText(context, "Invalid code", Toast.LENGTH_SHORT).show()
