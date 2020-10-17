@@ -1,14 +1,14 @@
 package kz.digitalart.app.ui.home.details
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import kz.digitalart.app.core.BaseViewModel
 import kz.digitalart.app.data.cloud.ResultWrapper
 import kz.digitalart.app.data.cloud.repository.BaseCloudRepository
 import kz.digitalart.app.data.db.PrefsImpl
 import kz.digitalart.app.domain.model.RatingModel
-import javax.inject.Inject
 
-class HomeDetailsViewModel @Inject constructor(
+class HomeDetailsViewModel @ViewModelInject constructor(
     private val baseCloudRepository: BaseCloudRepository,
     val prefsImpl: PrefsImpl
 ) : BaseViewModel() {

@@ -1,6 +1,5 @@
 package kz.digitalart.app.ui.custom_views
 
-import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.drawable.Animatable
 import android.media.MediaPlayer
@@ -14,7 +13,11 @@ import kotlinx.android.synthetic.main.view_audio_player.view.*
 import kz.digitalart.app.R
 import java.util.concurrent.TimeUnit
 
-class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletionListener,
+class AudioPlayer @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : LinearLayout(context, attrs, defStyleAttr), View.OnClickListener, MediaPlayer.OnCompletionListener,
     MediaPlayer.OnBufferingUpdateListener, SeekBar.OnSeekBarChangeListener {
 
     private var lengthOfAudio: Int = 0
@@ -22,23 +25,6 @@ class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletion
     private var mediaPlayer: MediaPlayer
 
     private val r = Runnable { updateSeekProgress() }
-
-    @JvmOverloads
-    constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
-    )
-            : super(context, attrs, defStyleAttr)
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    constructor(
-        context: Context,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-        defStyleRes: Int
-    )
-            : super(context, attrs, defStyleAttr, defStyleRes)
 
     init {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater?

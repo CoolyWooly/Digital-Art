@@ -12,29 +12,23 @@ import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home_details.*
 import kz.digitalart.app.R
 import kz.digitalart.app.databinding.FragmentHomeDetailsBinding
 import kz.digitalart.app.domain.model.ExhibitModel
 import kz.digitalart.app.ui.MainActivity
-import javax.inject.Inject
 
-class HomeDetailsFragment : DaggerFragment() {
+@AndroidEntryPoint
+class HomeDetailsFragment : Fragment() {
 
     private val TAG: String = this::class.java.simpleName
     private var exhibitModel: ExhibitModel? = null
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: HomeDetailsViewModel by lazy {
-        ViewModelProvider(
-            this,
-            viewModelFactory
-        ).get(HomeDetailsViewModel::class.java)
-    }
+    private val viewModel: HomeDetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

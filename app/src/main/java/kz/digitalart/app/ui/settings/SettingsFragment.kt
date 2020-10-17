@@ -4,25 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kz.digitalart.app.R
 import kz.digitalart.app.ui.MainActivity
 import kz.digitalart.app.ui.settings.languages.LanguagesBottomSheetCallback
 import kz.digitalart.app.ui.settings.languages.LanguagesBottomSheetDialogFragment
-import javax.inject.Inject
 
-class SettingsFragment : DaggerFragment(), View.OnClickListener, LanguagesBottomSheetCallback {
+@AndroidEntryPoint
+class SettingsFragment : Fragment(), View.OnClickListener, LanguagesBottomSheetCallback {
 
     private val TAG: String = this::class.java.simpleName
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: SettingsViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory).get(SettingsViewModel::class.java)
-    }
+    private val viewModel: SettingsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

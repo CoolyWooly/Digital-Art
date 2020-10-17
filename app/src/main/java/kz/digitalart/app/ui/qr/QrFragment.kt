@@ -18,10 +18,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.text.isDigitsOnly
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_qr.*
 import kz.digitalart.app.R
 import kz.digitalart.app.ui.MainActivity
@@ -29,20 +30,15 @@ import me.dm7.barcodescanner.core.IViewFinder
 import me.dm7.barcodescanner.core.ViewFinderView
 import me.dm7.barcodescanner.zbar.Result
 import me.dm7.barcodescanner.zbar.ZBarScannerView
-import javax.inject.Inject
 
-
-class QrFragment : DaggerFragment(), ZBarScannerView.ResultHandler {
+@AndroidEntryPoint
+class QrFragment : Fragment(), ZBarScannerView.ResultHandler {
 
     private val TAG: String = this::class.java.simpleName
     private var mScannerView: ZBarScannerView? = null
     private val CAMERA_REQUEST_CODE = 0
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: QrViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory).get(QrViewModel::class.java)
-    }
+    private val viewModel: QrViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

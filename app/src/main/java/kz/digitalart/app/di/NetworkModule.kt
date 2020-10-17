@@ -3,6 +3,8 @@ package kz.digitalart.app.di.module
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import kz.digitalart.app.core.Config
 import kz.digitalart.app.data.cloud.repository.BaseCloudRepository
 import kz.digitalart.app.data.cloud.repository.CloudRepository
@@ -15,6 +17,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class NetworkModule {
 
     @Provides

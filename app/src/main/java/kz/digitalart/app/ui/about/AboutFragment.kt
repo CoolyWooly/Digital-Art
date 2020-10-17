@@ -6,22 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kz.digitalart.app.R
 import kz.digitalart.app.databinding.FragmentAboutBinding
 import kz.digitalart.app.ui.MainActivity
-import javax.inject.Inject
 
-class AboutFragment : DaggerFragment() {
+@AndroidEntryPoint
+class AboutFragment : Fragment() {
     private val TAG: String = this::class.java.simpleName
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: AboutViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory).get(AboutViewModel::class.java)
-    }
+    private val viewModel: AboutViewModel by viewModels()
+
     var binding: FragmentAboutBinding? = null
 
     override fun onCreateView(

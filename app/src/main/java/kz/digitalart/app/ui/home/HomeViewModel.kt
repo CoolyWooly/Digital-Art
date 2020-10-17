@@ -1,14 +1,14 @@
 package kz.digitalart.app.ui.home
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import kz.digitalart.app.core.BaseViewModel
 import kz.digitalart.app.data.cloud.ResultWrapper
 import kz.digitalart.app.data.cloud.repository.BaseCloudRepository
 import kz.digitalart.app.data.db.PrefsImpl
 import kz.digitalart.app.domain.model.ExhibitModel
-import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(
+class HomeViewModel @ViewModelInject constructor(
     private val prefsImpl: PrefsImpl,
     private val baseCloudRepository: BaseCloudRepository
 ) : BaseViewModel() {

@@ -1,14 +1,14 @@
 package kz.digitalart.app.ui.qr
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import kz.digitalart.app.core.BaseViewModel
 import kz.digitalart.app.data.cloud.ResultWrapper
 import kz.digitalart.app.data.cloud.repository.BaseCloudRepository
 import kz.digitalart.app.data.db.PrefsImpl
 import kz.digitalart.app.domain.model.ExhibitModel
-import javax.inject.Inject
 
-class QrViewModel @Inject constructor(
+class QrViewModel @ViewModelInject constructor(
     private val baseCloudRepository: BaseCloudRepository,
     private val prefsImpl: PrefsImpl
 ) : BaseViewModel() {

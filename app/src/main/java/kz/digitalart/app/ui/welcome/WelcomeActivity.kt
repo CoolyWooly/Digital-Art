@@ -2,26 +2,21 @@ package kz.digitalart.app.ui.welcome
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
-import dagger.android.support.DaggerAppCompatActivity
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_welcome.*
 import kz.digitalart.app.R
 import kz.digitalart.app.ui.MainActivity
 import kz.digitalart.app.ui.custom_views.languages.OnLangItemClickListener
 import kz.digitalart.app.utils.updateResources
-import javax.inject.Inject
 
-
-class WelcomeActivity : DaggerAppCompatActivity(), OnLangItemClickListener {
+@AndroidEntryPoint
+class WelcomeActivity : AppCompatActivity(), OnLangItemClickListener {
 
     private val TAG = this::class.java.simpleName
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val viewModel: WelcomeViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory).get(WelcomeViewModel::class.java)
-    }
+    private val viewModel: WelcomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
