@@ -161,7 +161,7 @@ class AudioPlayer : LinearLayout, View.OnClickListener, MediaPlayer.OnCompletion
     }
 
     fun setURL(string: String?) {
-        URL = string
+        URL = "https://www.oum.ru/upload/audio/17a/17adf29b51141486bb5adb503509dca3.mp3"
     }
 
     override fun onDetachedFromWindow() {

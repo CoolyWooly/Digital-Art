@@ -3,6 +3,7 @@ package kz.digitalart.app.ui
 import android.content.Context
 import android.os.Bundle
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -23,7 +24,8 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun setupNavigation() {
-        val navController = Navigation.findNavController(this, R.id.container)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
+        val navController = navHostFragment.navController
         NavigationUI.setupActionBarWithNavController(this, navController)
         NavigationUI.setupWithNavController(nav_view, navController)
     }
